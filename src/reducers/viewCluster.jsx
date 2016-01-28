@@ -2,6 +2,8 @@ import modals from './modals';
 import stack from './stack';
 import tabs from './tabs';
 
+let reducers = {modals, stack, tabs};
+
 import pathToArray from '../utils/pathToArray';
 import selectIt from '../utils/selectIt';
 import setIt from '../utils/setIt';
@@ -17,12 +19,10 @@ export default function viewCluster(state = {}, action) {
   each(path, (segment) => {
     if (/tabs|stack|modals|viewCluster/.test(segment)) {
       subSelector = selector = selectIt(subSelector, segment);
-      func = this[segment];
+      func = reducers[segment];
     } else {
       subSelector = selectIt(subSelector, segment);
     }
   });
-
-  let newSubState = func(selector, action);
-  return setIt(state, path, newSubState);
+  return func ? setIt(state, path, func(selector, action)) : state;
 }

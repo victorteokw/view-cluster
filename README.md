@@ -1,4 +1,5 @@
 # view-cluster
+![build status](https://travis-ci.org/cheunghy/view-cluster.svg)
 
 Aim to be the best solution for iOS style app in browser.
 
@@ -9,6 +10,12 @@ Do not use this yet! Not finished implementing.
 ``` bash
 npm install view-cluster
 ```
+
+view-cluster works with
++ node.js 0.11 or above
++ react.js 0.14
++ redux 3
++ lodash 4
 
 ## Documentation
 

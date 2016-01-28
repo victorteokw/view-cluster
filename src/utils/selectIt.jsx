@@ -1,4 +1,5 @@
 import isArray from 'lodash/isArray';
+import find from 'lodash/find';
 
 function _selectIt(selector, segment) {
   if (isArray(selector)) {
