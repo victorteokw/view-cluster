@@ -4,6 +4,12 @@ Aim to be the best solution for iOS style app in browser.
 
 Do not use this yet! Not finished implementing.
 
+## Installation
+
+``` bash
+npm install view-cluster
+```
+
 ## Documentation
 
 ### Descriptor

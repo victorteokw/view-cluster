@@ -9,15 +9,3 @@ export const DISMISS_MODAL = 'DISMISS_MODAL';
 export const PUSH_STACK = 'PUSH_STACK';
 export const POP_STACK = 'POP_STACK';
 export const SET_STACK = 'SET_STACK';
-
-export default {
-  SELECT_TAB,
-  ADD_TAB,
-  REMOVE_TAB,
-  SET_TABS,
-  PRESENT_MODAL,
-  DISMISS_MODAL,
-  PUSH_STACK,
-  POP_STACK,
-  SET_STACK
-}

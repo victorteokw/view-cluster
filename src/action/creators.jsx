@@ -85,15 +85,3 @@ export function setStack(path, stack) {
     }
   };
 }
-
-export default {
-  selectTab,
-  addTab,
-  removeTab,
-  setTabs,
-  presentModal,
-  dismissModal,
-  pushStack,
-  popStack,
-  setStack
-};
