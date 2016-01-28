@@ -8,28 +8,28 @@ suite('reducers', function() {
 
     let state = [
       {
-        slug: 'artists',
+        key: 'artists',
         title: 'Artists',
         selected: true,
         icon: 'artists-icon.png',
         stack: [{page: 'ArtistsPage', props: {}}]
       },
       {
-        slug: 'songs',
+        key: 'songs',
         title: 'Songs',
         selected: false,
         icon: 'songs-icon.png',
         stack: [{page: 'SongsPage', props: {}}]
       },
       {
-        slug: 'albums',
+        key: 'albums',
         title: 'Albums',
         selected: false,
         icon: 'albums-icon.png',
         stack: [{page: 'AlbumsPage', props: {}}]
       },
       {
-        slug: 'search',
+        key: 'search',
         title: 'Search',
         selected: false,
         icon: 'search-icon.png',
@@ -42,28 +42,28 @@ suite('reducers', function() {
       test('with a number', function() {
         assert.deepEqual(tabs(state, selectTab('tabs.2')), [
           {
-            slug: 'artists',
+            key: 'artists',
             title: 'Artists',
             selected: false,
             icon: 'artists-icon.png',
             stack: [{page: 'ArtistsPage', props: {}}]
           },
           {
-            slug: 'songs',
+            key: 'songs',
             title: 'Songs',
             selected: false,
             icon: 'songs-icon.png',
             stack: [{page: 'SongsPage', props: {}}]
           },
           {
-            slug: 'albums',
+            key: 'albums',
             title: 'Albums',
             selected: true,
             icon: 'albums-icon.png',
             stack: [{page: 'AlbumsPage', props: {}}]
           },
           {
-            slug: 'search',
+            key: 'search',
             title: 'Search',
             selected: false,
             icon: 'search-icon.png',
@@ -75,28 +75,28 @@ suite('reducers', function() {
       test('with a key', function() {
         assert.deepEqual(tabs(state, selectTab('tabs.songs')), [
           {
-            slug: 'artists',
+            key: 'artists',
             title: 'Artists',
             selected: false,
             icon: 'artists-icon.png',
             stack: [{page: 'ArtistsPage', props: {}}]
           },
           {
-            slug: 'songs',
+            key: 'songs',
             title: 'Songs',
             selected: true,
             icon: 'songs-icon.png',
             stack: [{page: 'SongsPage', props: {}}]
           },
           {
-            slug: 'albums',
+            key: 'albums',
             title: 'Albums',
             selected: false,
             icon: 'albums-icon.png',
             stack: [{page: 'AlbumsPage', props: {}}]
           },
           {
-            slug: 'search',
+            key: 'search',
             title: 'Search',
             selected: false,
             icon: 'search-icon.png',
@@ -111,42 +111,42 @@ suite('reducers', function() {
 
       test('with a number', function() {
         assert.deepEqual(tabs(state, addTab('tabs.2', {
-          slug: 'fans',
+          key: 'fans',
           title: 'Fans',
           selected: false,
           icon: 'fans-icon.png',
           page: {page: 'FansPage', props: {}}
         })), [
           {
-            slug: 'artists',
+            key: 'artists',
             title: 'Artists',
             selected: true,
             icon: 'artists-icon.png',
             stack: [{page: 'ArtistsPage', props: {}}]
           },
           {
-            slug: 'songs',
+            key: 'songs',
             title: 'Songs',
             selected: false,
             icon: 'songs-icon.png',
             stack: [{page: 'SongsPage', props: {}}]
           },
           {
-            slug: 'fans',
+            key: 'fans',
             title: 'Fans',
             selected: false,
             icon: 'fans-icon.png',
             page: {page: 'FansPage', props: {}}
           },
           {
-            slug: 'albums',
+            key: 'albums',
             title: 'Albums',
             selected: false,
             icon: 'albums-icon.png',
             stack: [{page: 'AlbumsPage', props: {}}]
           },
           {
-            slug: 'search',
+            key: 'search',
             title: 'Search',
             selected: false,
             icon: 'search-icon.png',
@@ -162,21 +162,21 @@ suite('reducers', function() {
       test('with a number', function() {
         assert.deepEqual(tabs(state, removeTab('tabs.2')), [
           {
-            slug: 'artists',
+            key: 'artists',
             title: 'Artists',
             selected: true,
             icon: 'artists-icon.png',
             stack: [{page: 'ArtistsPage', props: {}}]
           },
           {
-            slug: 'songs',
+            key: 'songs',
             title: 'Songs',
             selected: false,
             icon: 'songs-icon.png',
             stack: [{page: 'SongsPage', props: {}}]
           },
           {
-            slug: 'search',
+            key: 'search',
             title: 'Search',
             selected: false,
             icon: 'search-icon.png',
@@ -188,21 +188,21 @@ suite('reducers', function() {
       test('with a key', function() {
         assert.deepEqual(tabs(state, removeTab('tabs.albums')), [
           {
-            slug: 'artists',
+            key: 'artists',
             title: 'Artists',
             selected: true,
             icon: 'artists-icon.png',
             stack: [{page: 'ArtistsPage', props: {}}]
           },
           {
-            slug: 'songs',
+            key: 'songs',
             title: 'Songs',
             selected: false,
             icon: 'songs-icon.png',
             stack: [{page: 'SongsPage', props: {}}]
           },
           {
-            slug: 'search',
+            key: 'search',
             title: 'Search',
             selected: false,
             icon: 'search-icon.png',
