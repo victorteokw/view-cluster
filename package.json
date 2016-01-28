@@ -1,0 +1,31 @@
+{
+  "name": "view-cluster",
+  "version": "0.0.1",
+  "description": "Aim to be the best solution for iOS style app in browser.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheunghy/view-cluster.git"
+  },
+  "keywords": [
+    "view",
+    "react",
+    "ios",
+    "ui",
+    "html"
+  ],
+  "author": "Zhang Kai Yu <yeannylam@gmail.com> (http://www.cheunghoiyu.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheunghy/view-cluster/issues"
+  },
+  "homepage": "https://github.com/cheunghy/view-cluster#readme",
+  "peerDependencies": {
+    "react": "^0.14.0",
+    "redux": "^3.0.0",
+    "lodash": "^4.0.0"
+  }
+}
