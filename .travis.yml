@@ -8,3 +8,9 @@ node_js:
   - "0.12"
   - "0.11"
   - "iojs"
+
+
+before_script:
+  - npm install react@0.14
+  - npm install lodash@4.0
+  - npm install redux@3.0
