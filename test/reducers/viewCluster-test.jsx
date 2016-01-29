@@ -581,4 +581,251 @@ suite('reducers', function() {
     });
 
   });
+
+  suite('nested viewCluster in a modal', function() {
+
+    let state = {
+      stack: [
+        {
+          key: 'first-page',
+          page: 'FirstPage',
+          props: {}
+        }
+      ],
+      modals: [
+        {
+          key: 'first-modal',
+          viewCluster: {
+            key: 'first-modal-cluster',
+            tabs: [
+              {
+                key: 'first-tab',
+                title: "First Tab",
+                selected: true,
+                stack: [
+                  {
+                    key: 'first-page',
+                    page: 'FirstPage',
+                    props: {}
+                  },
+                  {
+                    key: 'second-page',
+                    page: 'SecondPage',
+                    props: {}
+                  }
+                ]
+              }
+            ],
+            modals: []
+          }
+        }
+      ]
+    };
+
+    test('presentModal', function() {
+      assert.deepEqual(viewCluster(state, presentModal('modals.first-modal.viewCluster.modals', {
+        key: 'new-modal-1',
+        page: {
+          key: 'new-page-key',
+          page: 'NewPage',
+          props: {}
+        }
+      })), {
+        stack: [
+          {
+            key: 'first-page',
+            page: 'FirstPage',
+            props: {}
+          }
+        ],
+        modals: [
+          {
+            key: 'first-modal',
+            viewCluster: {
+              key: 'first-modal-cluster',
+              tabs: [
+                {
+                  key: 'first-tab',
+                  title: "First Tab",
+                  selected: true,
+                  stack: [
+                    {
+                      key: 'first-page',
+                      page: 'FirstPage',
+                      props: {}
+                    },
+                    {
+                      key: 'second-page',
+                      page: 'SecondPage',
+                      props: {}
+                    }
+                  ]
+                }
+              ],
+              modals: [
+                {
+                  key: 'new-modal-1',
+                  page: {
+                    key: 'new-page-key',
+                    page: 'NewPage',
+                    props: {}
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      });
+    });
+
+    test('dismissModal', function() {
+      let newState = {
+        stack: [
+          {
+            key: 'first-page',
+            page: 'FirstPage',
+            props: {}
+          }
+        ],
+        modals: [
+          {
+            key: 'first-modal',
+            viewCluster: {
+              key: 'first-modal-cluster',
+              tabs: [
+                {
+                  key: 'first-tab',
+                  title: "First Tab",
+                  selected: true,
+                  stack: [
+                    {
+                      key: 'first-page',
+                      page: 'FirstPage',
+                      props: {}
+                    },
+                    {
+                      key: 'second-page',
+                      page: 'SecondPage',
+                      props: {}
+                    }
+                  ]
+                }
+              ],
+              modals: [
+                {
+                  key: 'new-modal-1',
+                  page: {
+                    key: 'new-page-key',
+                    page: 'NewPage',
+                    props: {}
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      };
+      assert.deepEqual(viewCluster(newState,
+        dismissModal('modals.first-modal.viewCluster.modals.new-modal-1')), state);
+    });
+
+    test('addTab', function() {
+      assert.deepEqual(viewCluster(state, addTab('modals.first-modal.viewCluster.tabs.0', {
+        key: 'new-tab-1',
+        title: 'New Tab 1',
+        page: { page: 'APage', props: {}}
+      })), {
+        stack: [
+          {
+            key: 'first-page',
+            page: 'FirstPage',
+            props: {}
+          }
+        ],
+        modals: [
+          {
+            key: 'first-modal',
+            viewCluster: {
+              key: 'first-modal-cluster',
+              tabs: [
+                {
+                  key: 'new-tab-1',
+                  title: 'New Tab 1',
+                  page: { page: 'APage', props: {}}
+                },
+                {
+                  key: 'first-tab',
+                  title: "First Tab",
+                  selected: true,
+                  stack: [
+                    {
+                      key: 'first-page',
+                      page: 'FirstPage',
+                      props: {}
+                    },
+                    {
+                      key: 'second-page',
+                      page: 'SecondPage',
+                      props: {}
+                    }
+                  ]
+                }
+              ],
+              modals: []
+            }
+          }
+        ]
+      });
+    });
+
+    test('pushStack', function() {
+      assert.deepEqual(viewCluster(state, pushStack('modals.first-modal.viewCluster.tabs.first-tab.stack', {
+        key: 'third-page',
+        page: 'ThirdPage',
+        props: {}
+      })), {
+        stack: [
+          {
+            key: 'first-page',
+            page: 'FirstPage',
+            props: {}
+          }
+        ],
+        modals: [
+          {
+            key: 'first-modal',
+            viewCluster: {
+              key: 'first-modal-cluster',
+              tabs: [
+                {
+                  key: 'first-tab',
+                  title: "First Tab",
+                  selected: true,
+                  stack: [
+                    {
+                      key: 'first-page',
+                      page: 'FirstPage',
+                      props: {}
+                    },
+                    {
+                      key: 'second-page',
+                      page: 'SecondPage',
+                      props: {}
+                    },
+                    {
+                      key: 'third-page',
+                      page: 'ThirdPage',
+                      props: {}
+                    }
+                  ]
+                }
+              ],
+              modals: []
+            }
+          }
+        ]
+      });
+    });
+
+  });
 });
