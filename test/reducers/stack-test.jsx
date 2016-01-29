@@ -1,5 +1,5 @@
 import stack from '../../src/reducers/stack';
-import {pushStack, popStack, setStack} from '../../src/action/creators.jsx';
+import {pushStack, popStack, setStack} from '../../src/action/creators';
 import assert from 'assert';
 
 suite('reducers', function() {

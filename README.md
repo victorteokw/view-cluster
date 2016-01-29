@@ -1,5 +1,7 @@
 # view-cluster
-![build status](https://travis-ci.org/cheunghy/view-cluster.svg)
+[![build status](https://travis-ci.org/cheunghy/view-cluster.svg)](https://travis-ci.org/cheunghy/view-cluster)
+
+[![current version](https://badge.fury.io/js/view-cluster.svg)](https://www.npmjs.com/package/view-cluster)
 
 Aim to be the best solution for iOS style app in browser.
 

@@ -1,5 +1,5 @@
 import modals from '../../src/reducers/modals';
-import {presentModal, dismissModal} from '../../src/action/creators.jsx';
+import {presentModal, dismissModal} from '../../src/action/creators';
 import assert from 'assert';
 
 suite('reducers', function() {

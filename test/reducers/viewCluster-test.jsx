@@ -3,7 +3,7 @@ import {
   presentModal, dismissModal,
   addTab, removeTab, setTabs, selectTab,
   pushStack, popStack, setStack
-} from '../../src/action/creators.jsx';
+} from '../../src/action/creators';
 import assert from 'assert';
 
 suite('reducers', function() {
