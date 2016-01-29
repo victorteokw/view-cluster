@@ -130,6 +130,7 @@ suite.skip('reducers', function() {
           {
             key: 'selectGenre',
             page: {
+              key: 'select-genre-page',
               page: 'SelectGenrePage',
               props: {}
             }
@@ -197,6 +198,7 @@ suite.skip('reducers', function() {
             key: 'albums',
             title: 'Albums',
             page: {
+              key: 'albums-page',
               page: 'AlbumsPage',
               props: {}
             }
@@ -263,13 +265,16 @@ suite.skip('reducers', function() {
           {
             key: 'artists',
             title: 'Artists',
+            selected: false,
             icon: 'icon-artists.png',
             stack: [
               {
+                key: 'artist-list-page',
                 page: 'ArtistListPage',
                 props: {}
               },
               {
+                key: 'artist-page',
                 page: 'ArtistPage',
                 props: {id: 10}
               }
@@ -283,6 +288,7 @@ suite.skip('reducers', function() {
               key: 'addArtist',
               stack: [
                 {
+                  key: 'add-artist-page',
                   page: 'AddArtistPage',
                   props: {}
                 }
@@ -298,6 +304,7 @@ suite.skip('reducers', function() {
         {
           key: 'worldClock',
           title: 'World Clock',
+          selected: false,
           page: {
             key: 'world-clock-page',
             props: {},
@@ -309,6 +316,7 @@ suite.skip('reducers', function() {
           {
             key: 'worldClock',
             title: 'World Clock',
+            selected: false,
             page: {
               key: 'world-clock-page',
               props: {},
@@ -323,6 +331,7 @@ suite.skip('reducers', function() {
               key: 'addArtist',
               stack: [
                 {
+                  key: 'add-artist-page',
                   page: 'AddArtistPage',
                   props: {}
                 }
@@ -343,10 +352,12 @@ suite.skip('reducers', function() {
             icon: 'icon-songs.png',
             stack: [
               {
+                key: 'song-list-page',
                 page: 'SongListPage',
                 props: {}
               },
               {
+                key: 'song-page',
                 page: 'SongPage',
                 props: {id: 2}
               }
@@ -359,10 +370,12 @@ suite.skip('reducers', function() {
             icon: 'icon-artists.png',
             stack: [
               {
+                key: 'artist-list-page',
                 page: 'ArtistListPage',
                 props: {}
               },
               {
+                key: 'artist-page',
                 page: 'ArtistPage',
                 props: {id: 10}
               }
@@ -376,6 +389,7 @@ suite.skip('reducers', function() {
               key: 'addArtist',
               stack: [
                 {
+                  key: 'add-artist-page',
                   page: 'AddArtistPage',
                   props: {}
                 }
@@ -388,6 +402,7 @@ suite.skip('reducers', function() {
 
     test('pushStack', function() {
       assert.deepEqual(viewCluster(state, pushStack('tabs.songs.stack', {
+        key: 'photos-page',
         page: 'PhotosPage',
         props: {id: 2}
       })), {
@@ -395,17 +410,21 @@ suite.skip('reducers', function() {
           {
             key: 'songs',
             title: 'Songs',
+            selected: true,
             icon: 'icon-songs.png',
             stack: [
               {
+                key: 'song-list-page',
                 page: 'SongListPage',
                 props: {}
               },
               {
+                key: 'song-page',
                 page: 'SongPage',
                 props: {id: 2}
               },
               {
+                key: 'photos-page',
                 page: 'PhotosPage',
                 props: {id: 2}
               }
@@ -414,13 +433,16 @@ suite.skip('reducers', function() {
           {
             key: 'artists',
             title: 'Artists',
+            selected: false,
             icon: 'icon-artists.png',
             stack: [
               {
+                key: 'artist-list-page',
                 page: 'ArtistListPage',
                 props: {}
               },
               {
+                key: 'artist-page',
                 page: 'ArtistPage',
                 props: {id: 10}
               }
@@ -434,6 +456,7 @@ suite.skip('reducers', function() {
               key: 'addArtist',
               stack: [
                 {
+                  key: 'add-artist-page',
                   page: 'AddArtistPage',
                   props: {}
                 }
@@ -450,9 +473,11 @@ suite.skip('reducers', function() {
           {
             key: 'songs',
             title: 'Songs',
+            selected: true,
             icon: 'icon-songs.png',
             stack: [
               {
+                key: 'song-list-page',
                 page: 'SongListPage',
                 props: {}
               }
@@ -461,13 +486,16 @@ suite.skip('reducers', function() {
           {
             key: 'artists',
             title: 'Artists',
+            selected: false,
             icon: 'icon-artists.png',
             stack: [
               {
+                key: 'artist-list-page',
                 page: 'ArtistListPage',
                 props: {}
               },
               {
+                key: 'artist-page',
                 page: 'ArtistPage',
                 props: {id: 10}
               }
@@ -481,6 +509,7 @@ suite.skip('reducers', function() {
               key: 'addArtist',
               stack: [
                 {
+                  key: 'add-artist-page',
                   page: 'AddArtistPage',
                   props: {}
                 }
@@ -508,10 +537,12 @@ suite.skip('reducers', function() {
             icon: 'icon-songs.png',
             stack: [
               {
+                key: 'song-list-page',
                 page: 'SongListPage',
                 props: {}
               },
               {
+                key: 'song-page',
                 page: 'SongPage',
                 props: {id: 2}
               }
@@ -538,6 +569,7 @@ suite.skip('reducers', function() {
               key: 'addArtist',
               stack: [
                 {
+                  key: 'add-artist-page',
                   page: 'AddArtistPage',
                   props: {}
                 }
