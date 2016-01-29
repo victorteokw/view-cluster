@@ -6,7 +6,7 @@ import {
 } from '../../src/action/creators.jsx';
 import assert from 'assert';
 
-suite.skip('reducers', function() {
+suite('reducers', function() {
 
   suite('viewCluster', function() {
 
