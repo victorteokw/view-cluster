@@ -2,7 +2,8 @@ import viewCluster from '../../src/reducers/viewCluster';
 import {
   presentModal, dismissModal,
   addTab, removeTab, setTabs, selectTab,
-  pushStack, popStack, setStack
+  pushStack, popStack, setStack,
+  setPageProps
 } from '../../src/action/creators';
 import assert from 'assert';
 
@@ -825,6 +826,125 @@ suite('reducers', function() {
           }
         ]
       });
+    });
+
+  });
+
+  suite('set page props', function() {
+
+    test('works in a tab', function() {
+
+      let state = {
+        tabs: [
+          {
+            key: 'firstTab',
+            title: 'First Tab',
+            page: {
+              page: 'FirstPage',
+              key: 'firstPage',
+              props: {showBar: true}
+            }
+          }
+        ]
+      };
+
+      assert.deepEqual(viewCluster(state, setPageProps('tabs.firstTab.page', {animateBar: true})), {
+        tabs: [
+          {
+            key: 'firstTab',
+            title: 'First Tab',
+            page: {
+              page: 'FirstPage',
+              key: 'firstPage',
+              props: {showBar: true, animateBar: true}
+            }
+          }
+        ]
+      });
+
+    });
+
+    test('works in a stack', function() {
+
+      let state = {
+        tabs: [
+          {
+            key: 'firstTab',
+            title: 'First Tab',
+            stack: [
+              {
+                page: 'FirstPage',
+                key: 'firstPage',
+                props: {showBar: true}
+              }
+            ]
+          }
+        ]
+      };
+
+      assert.deepEqual(viewCluster(state, setPageProps('tabs.firstTab.stack.firstPage', {animateBar: true})), {
+        tabs: [
+          {
+            key: 'firstTab',
+            title: 'First Tab',
+            stack: [
+              {
+                page: 'FirstPage',
+                key: 'firstPage',
+                props: {showBar: true, animateBar: true}
+              }
+            ]
+          }
+        ]
+      });
+
+    });
+
+    test('works in a view cluster', function() {
+
+      let state = {
+        page: {
+          page: 'SomePage',
+          key: 'first'
+        },
+        modals: []
+      };
+
+      assert.deepEqual(viewCluster(state, setPageProps('page', {animateBar: true})), {
+        page: {
+          page: 'SomePage',
+          key: 'first',
+          props: {animateBar: true}
+        },
+        modals: []
+      });
+
+    });
+
+    test('works in a modal', function() {
+
+      let state = {
+        tabs: [],
+        modals: [
+          {
+            page: 'SomePage',
+            key: 'some',
+            props: {}
+          }
+        ]
+      };
+
+      assert.deepEqual(viewCluster(state, setPageProps('modals.some', {animateBar: true})), {
+        tabs: [],
+        modals: [
+          {
+            page: 'SomePage',
+            key: 'some',
+            props: {animateBar: true}
+          }
+        ]
+      });
+
     });
 
   });

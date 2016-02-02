@@ -71,6 +71,12 @@ suite('utils', function(){
       ]);
     });
 
+    test('set it on array with number keys and string keys', function() {
+      assert.deepEqual(setIt([0,1,2,[{key:'a', val: [{key:'c', a: 1}]}, {key:'b'}]], '3.a.val.c', {key: 'c', a:1, b:2}), [
+        0,1,2,[{key:'a', val: [{key:'c', a: 1, b:2}]}, {key:'b'}]
+      ]);
+    });
+
   });
 
 });

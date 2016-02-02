@@ -85,3 +85,13 @@ export function setStack(path, stack) {
     }
   };
 }
+
+export function setPageProps(path, props) {
+  return {
+    type: types.SET_PAGE_PROPS,
+    payload: {
+      path,
+      props
+    }
+  }
+}

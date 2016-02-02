@@ -1,12 +1,15 @@
 {
   "name": "view-cluster",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Aim to be the best solution for iOS style app in browser.",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha test/**/* --compilers js:babel-register --ui tdd",
     "build": "babel src/**/*.js --out-dir lib",
     "prepublish": "npm run-script build"
+  },
+  "directories": {
+    "lib": "lib/src"
   },
   "repository": {
     "type": "git",

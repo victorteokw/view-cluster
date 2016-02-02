@@ -47,6 +47,10 @@ suite('utils', function(){
       ], ['keyFirst', 'key']), 'keyFirst');
     });
 
+    test('shouldn\'t bug if key is array\'s method', function() {
+      assert.deepEqual(selectIt([{key: 'some'}, {key: 'reduce'}, {key: 'map'}], 'map'), {key: 'map'});
+    });
+
   });
 
 });

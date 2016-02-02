@@ -9,3 +9,5 @@ export const DISMISS_MODAL = 'DISMISS_MODAL';
 export const PUSH_STACK = 'PUSH_STACK';
 export const POP_STACK = 'POP_STACK';
 export const SET_STACK = 'SET_STACK';
+
+export const SET_PAGE_PROPS = 'SET_PAGE_PROPS';

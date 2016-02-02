@@ -3,7 +3,11 @@ import find from 'lodash/find';
 
 function _selectIt(selector, segment) {
   if (isArray(selector)) {
-    return selector[segment] || find(selector, (i) => i.key === segment);
+    if (/^\d+$/.test(segment)) {
+      return selector[segment];
+    } else {
+      return find(selector, (i) => i.key === segment);
+    }
   }
   return selector[segment];
 }
