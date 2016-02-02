@@ -6,8 +6,12 @@ import omit from 'lodash/omit';
 
 import TabBar from './TabBar';
 import TabBarItem from './TabBarItem';
+import TabContent from './TabContent';
 import NavigationBar from './NavigationBar';
 import Modals from './Modals';
+import Modal from './Modal';
+import Stack from './Stack';
+import StackItem from './StackItem';
 
 export default class ViewCluster extends React.Component {
 
@@ -30,11 +34,28 @@ export default class ViewCluster extends React.Component {
 
   renderBody(props) {
     if (props.tabs) {
-
+      return <div>
+        {
+          props.tabs.map((t) => {
+            return <TabContent {...omit(t, ['stack', 'page'])}>
+              {this.renderBody(t)}
+            </TabContent>
+          })
+        }
+      </div>
     } else if (props.stack) {
-
+      return <Stack>
+        {
+          props.stack.map((i, n, s) => {
+            return <StackItem key={i.key} first={n === 0} last={n === s.length - 1}>
+              {this.renderBody(i)}
+            </StackItem>
+          })
+        }
+      </Stack>
     } else if (props.page) {
-
+      let Page = this.props.pages[props.page];
+      return <Page {props.props} />
     }
   }
 
@@ -44,7 +65,9 @@ export default class ViewCluster extends React.Component {
       {
         props.modals.map((m) => {
           return <Modal key={m.key}>
-            
+            {this.renderBody(m)}
+            {this.renderNavigationBar(m)}
+            {this.renderTabBar(m)}
           </Modal>
         })
       }
@@ -52,7 +75,7 @@ export default class ViewCluster extends React.Component {
   }
 
   renderNavigationBar(props) {
-    if (!props.stack) return null;
+    if (!props.stack || !props.tabs) return null;
     return <NavigationBar ref='navigationBar' />
   }
 

@@ -11,6 +11,11 @@ function addKey(propTypes) {
   return propTypes;
 }
 
+export function removeKey(propTypes) {
+  delete propTypes.key;
+  return propTypes;
+}
+
 function tabsInside(propTypes) {
   propTypes.tabs = tabsPropTypes;
   return propTypes;
@@ -57,7 +62,9 @@ let tabsPropTypes = React.PropTypes.arrayOf(
   React.PropTypes.shape(tabPropTypes)
 );
 
-export let modalPropTypes = pipe({}, addKey, tabsInside, stackInside, pageInside);
+export let pureModalPropTypes = {};
+
+export let modalPropTypes = pipe(pureModalPropTypes, addKey, tabsInside, stackInside, pageInside);
 
 export let modalDefaultProps = {};
 
