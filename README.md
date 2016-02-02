@@ -17,7 +17,6 @@ view-cluster works with
 + node.js 0.11 or above
 + react.js 0.14
 + redux 3
-+ lodash 4
 
 ## Documentation
 
@@ -34,6 +33,8 @@ let viewCluster = {
   // OPTIONAL array of tabs
   "stack": stack
   // OPTIONAL stack
+  "page": page
+  // OPTIONAL page
   "modals": modals
   // OPTIONAL array of modals
 };
@@ -75,8 +76,12 @@ let modal = {
   // REQUIRED key should be unique, and matches /^[\w-_]*[a-zA-Z]+[\w-_]*$/
   "page": page,
   // OPTIONAL page
+  "tabs": tabs,
+  // OPTIONAL tabs
+  "stack": stack,
+  // OPTIONAL stack
   "viewCluster": viewCluster
-  // OPTIONAL view cluster
+  // OPTIONAL view cluster, not recommended to do this
 };
 ```
 
@@ -120,7 +125,7 @@ And this:
 Render your view cluster like this.
 
 ``` jsx
-<ViewCluster {...mainViewCluster} pages={pages} />
+<ViewCluster {...viewCluster} pages={pages} />
 ```
 
 The pages object is a object. Its keys are component names, values are
