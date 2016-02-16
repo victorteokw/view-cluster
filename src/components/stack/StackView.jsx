@@ -4,11 +4,8 @@ export default class StackView extends React.Component {
 
   static propTypes = {
     first: React.PropTypes.bool,
-    last: React.PropTypes.bool
-  };
-
-  static defaultProps = {
-
+    last: React.PropTypes.bool,
+    children: React.PropTypes.element.isRequired
   };
 
   constructor(props, context) {

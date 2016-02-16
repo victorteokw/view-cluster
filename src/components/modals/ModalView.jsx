@@ -3,9 +3,9 @@ import classNames from 'classnames';
 
 export default class ModalView extends React.Component {
 
-  static propTypes = pureModalPropTypes;
-
-  static defaultProps = modalDefaultProps;
+  static propTypes = {
+    children: React.PropTypes.element.isRequired
+  };
 
   constructor(props, context) {
     super(props, context);
