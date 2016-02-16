@@ -1,8 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
-import {pureModalPropTypes, modalDefaultProps} from './propTypes';
 
-export default class Modal extends React.Component {
+export default class ModalView extends React.Component {
 
   static propTypes = pureModalPropTypes;
 
