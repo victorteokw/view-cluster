@@ -120,13 +120,12 @@ And this:
 'tabs.0.stack'
 ```
 
-### Rendering
+### Pages
 
-Render your view cluster like this.
+First level pages.
 
-``` jsx
-<ViewCluster {...viewCluster} pages={pages} />
-```
+React.Component behaves like UIView in iOS,
 
-The pages object is a object. Its keys are component names, values are
-components. ViewCluster uses this object to find dynamic named pages.
+Page behaves like UIViewController in iOS,
+
+container page behaves like container view controller in iOS.
