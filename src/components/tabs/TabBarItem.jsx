@@ -4,6 +4,18 @@ import classNames from 'classnames';
 
 export default class TabBarItem extends React.Component {
 
+  static propTypes = {
+    tabs: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        key: React.PropTypes.string.isRequired,
+        title: React.PropTypes.string.isRequired,
+        selected: React.PropTypes.bool.isRequired,
+        icon: React.PropTypes.string.isRequired,
+        selectedIcon: React.PropTypes.string.isRequired
+      })
+    )
+  };
+
   constructor(props, context) {
     super(props, context);
   }

@@ -27,4 +27,6 @@ export default class ModalView extends React.Component {
       {this.props.children}
     </div>
   }
+
+
 }

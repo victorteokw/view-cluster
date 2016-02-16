@@ -10,12 +10,6 @@ export default class Page extends React.Component {
     pages: React.PropTypes.objectOf(
       React.PropTypes.any
     )
-    //pages: React.PropTypes.arrayOf(
-    //  React.PropTypes.shape({
-    //    page: React.PropTypes.string.isRequired,
-    //    props: React.PropTypes.object.isRequired
-    //  })
-    //)
   };
 
   constructor(props, context) {
@@ -104,7 +98,7 @@ export default class Page extends React.Component {
   pageRender(descriptor, key) {
     let Page = this.props.pages[descriptor.page];
     let props = descriptor.props;
-    return <Page {...props} ref={(r) => this.page[key] = r} />
+    return <Page {...props} ref={(r) => this.pages[key] = r} />
   }
 
   // Added by container components
