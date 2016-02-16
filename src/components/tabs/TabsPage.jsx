@@ -65,11 +65,11 @@ export default class TabsPage extends Page {
 
   componentWillUpdate(nextProps, nextState) {
     super.componentWillUpdate(nextProps, nextState);
-    let newPageKeys = nextProps.tabs.map((t) => t.key);
-    let currentPageKeys = this.props.tabs.map((t) => t.key);
-    let keysToAdd = difference(newPageKeys, currentPageKeys);
-    let keysToRemove = difference(currentPageKeys, newPageKeys);
-    map(pick(this.pages, keysToRemove), (p) => p.pageWillDisappear());
+    //let newPageKeys = nextProps.tabs.map((t) => t.key);
+    //let currentPageKeys = this.props.tabs.map((t) => t.key);
+    //let keysToAdd = difference(newPageKeys, currentPageKeys);
+    //let keysToRemove = difference(currentPageKeys, newPageKeys);
+    //map(pick(this.pages, keysToRemove), (p) => p.pageWillDisappear());
     let currentSelectedKey = this.getSelectedPageKey();
     let nextSelectedKey = this.getSelectedPageKey(nextProps);
     if (nextSelectedKey !== currentSelectedKey) {
@@ -82,11 +82,11 @@ export default class TabsPage extends Page {
 
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
-    let oldPageKeys = prevProps.tabs.map((t) => t.key);
-    let currentPageKeys = this.props.tabs.map((t) => t.key);
-    let keysAdded = difference(currentPageKeys, oldPageKeys);
-    let keysRemoved = difference(oldPageKeys, currentPageKeys);
-    map(keysRemoved, (k) => delete this.page[k]);
+    //let oldPageKeys = prevProps.tabs.map((t) => t.key);
+    //let currentPageKeys = this.props.tabs.map((t) => t.key);
+    //let keysAdded = difference(currentPageKeys, oldPageKeys);
+    //let keysRemoved = difference(oldPageKeys, currentPageKeys);
+    //map(keysRemoved, (k) => delete this.page[k]);
     let currentSelectedKey = this.getSelectedPageKey();
     let previousSelectedKey = this.getSelectedPageKey(prevProps);
     if (currentSelectedKey !== previousSelectedKey) {
@@ -120,5 +120,4 @@ export default class TabsPage extends Page {
     super.pageDidDisappear();
     this.getSelectedPage().pageDidDisappear();
   }
-
 }
