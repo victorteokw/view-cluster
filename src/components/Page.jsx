@@ -6,9 +6,26 @@ let LOADED = 'LOADED';
 
 export default class Page extends React.Component {
 
+  static propTypes = {
+    pages: React.PropTypes.objectOf(
+      React.PropTypes.any
+    )
+    //pages: React.PropTypes.arrayOf(
+    //  React.PropTypes.shape({
+    //    page: React.PropTypes.string.isRequired,
+    //    props: React.PropTypes.object.isRequired
+    //  })
+    //)
+  };
+
   constructor(props, context) {
     super(props, context);
     this.state = {status: EMPTY};
+    this.pages = {};
+  }
+
+  noLazyLoading() {
+    this.state = {status: LOADED};
   }
 
   loadPage(callback) {
@@ -82,6 +99,12 @@ export default class Page extends React.Component {
     } else {
       return null;
     }
+  }
+
+  pageRender(descriptor, key) {
+    let Page = this.props.pages[descriptor.page];
+    let props = descriptor.props;
+    return <Page {...props} ref={(r) => this.page[key] = r} />
   }
 
   // Added by container components

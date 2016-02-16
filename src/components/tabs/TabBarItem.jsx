@@ -1,19 +1,11 @@
 import React from 'react';
 import TextButton from 'react-text-button';
 import classNames from 'classnames';
-import {pureTabPropTypes} from './propTypes';
-import assign from 'lodash/assign';
 
 export default class TabBarItem extends React.Component {
 
-  static propTypes = assign({}, pureTabPropTypes, {callback: React.PropTypes.func.isRequired});
-
   constructor(props, context) {
     super(props, context);
-  }
-
-  style(className, index) {
-    return {};
   }
 
   render() {
