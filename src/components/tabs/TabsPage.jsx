@@ -7,7 +7,19 @@ import TabBarItem from './TabBarItem.jsx';
 export default class TabsPage extends Page {
 
   static propTypes = {
-    tabs: React.PropTypes.array
+    tabs: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        key: React.PropTypes.string.isRequired,
+        title: React.PropTypes.string.isRequired,
+        selected: React.PropTypes.bool.isRequired,
+        icon: React.PropTypes.string.isRequired,
+        selectedIcon: React.PropTypes.string.isRequired,
+        page: React.PropTypes.shape({
+          page: React.PropTypes.string.isRequired,
+          props: React.PropTypes.object
+        })
+      })
+    )
   };
 
   constructor(props, context) {
