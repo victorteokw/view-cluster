@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class StackItem extends React.Component {
+export default class StackView extends React.Component {
 
   static propTypes = {
     first: React.PropTypes.bool,
@@ -36,7 +36,7 @@ export default class StackItem extends React.Component {
   }
 
   render() {
-    return <div className="stack-item">
+    return <div className="stack-view">
       {this.props.children}
     </div>
   }
