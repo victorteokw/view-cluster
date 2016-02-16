@@ -6,6 +6,10 @@ import NavigationBar from './NavigationBar';
 
 import last from 'lodash/last';
 
+Page.prototype.navigationItem = function() {
+  return {};
+};
+
 export default class StackPage extends Page {
 
   static propTypes = {

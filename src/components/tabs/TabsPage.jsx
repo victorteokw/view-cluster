@@ -9,6 +9,10 @@ import difference from 'lodash/difference';
 import pick from 'lodash/pick';
 import map from 'lodash/map';
 
+Page.prototype.beyondTabBar = function() {
+  return false;
+};
+
 export default class TabsPage extends Page {
 
   static propTypes = {

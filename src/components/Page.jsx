@@ -9,7 +9,15 @@ export default class Page extends React.Component {
   static propTypes = {
     pages: React.PropTypes.objectOf(
       React.PropTypes.any
+    ),
+    path: React.PropTypes.arrayOf(
+      React.PropTypes.string.isRequired
     )
+  };
+
+  static defaultProps = {
+    pages: {},
+    path: []
   };
 
   constructor(props, context) {
@@ -98,15 +106,15 @@ export default class Page extends React.Component {
   pageRender(descriptor, key) {
     let Page = this.props.pages[descriptor.page];
     let props = descriptor.props;
-    return <Page {...props} ref={(r) => this.pages[key] = r} />
+    let path = concat(this.props.path, key);
+    return <Page path={path} {...props} ref={(r) => this.pages[key] = r} />
   }
 
-  // Added by container components
-  navigationItem() {
-    return {};
+  getPageForKey() {
+    return this.pages[key];
   }
 
-  beyondTabBar() {
-    return false;
+  getPageDescriptorForKey() {
+    return undefined;
   }
 }
