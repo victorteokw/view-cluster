@@ -16,17 +16,15 @@ Page.prototype.beyondTabBar = function() {
 export default class TabsPage extends Page {
 
   static propTypes = {
-    tabs: React.PropTypes.arrayOf(
+    childPages: React.PropTypes.arrayOf(
       React.PropTypes.shape({
         key: React.PropTypes.string.isRequired,
         title: React.PropTypes.string.isRequired,
         selected: React.PropTypes.bool.isRequired,
         icon: React.PropTypes.string.isRequired,
         selectedIcon: React.PropTypes.string.isRequired,
-        page: React.PropTypes.shape({
-          page: React.PropTypes.string.isRequired,
-          props: React.PropTypes.object
-        })
+        page: React.PropTypes.string.isRequired,
+        props: React.PropTypes.object
       })
     )
   };
@@ -39,16 +37,16 @@ export default class TabsPage extends Page {
   renderPage() {
     return <div className="tabs-page">
       {
-        this.props.tabs.map((t) => {
+        this.props.childPages.map((t) => {
           return <TabView key={t.key} selected={t.selected}>
-            {this.pageRender(t.page, t.key)}
+            {this.pageRender(t)}
           </TabView>
         })
       }
       <TabBar>
         {
-          this.props.tabs.map((t) => {
-            return <TabBarItem {...omit(t, 'page')} />
+          this.props.childPages.map((t) => {
+            return <TabBarItem {...omit(t, 'page', 'props')} />
           })
         }
       </TabBar>

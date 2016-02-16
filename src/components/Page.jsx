@@ -1,5 +1,7 @@
 import React from 'react';
 
+import concat from 'lodash/concat';
+
 let EMPTY = 'EMPTY';
 let LOADING = 'LOADING';
 let LOADED = 'LOADED';
@@ -12,12 +14,20 @@ export default class Page extends React.Component {
     ),
     path: React.PropTypes.arrayOf(
       React.PropTypes.string.isRequired
+    ),
+    childPages: React.PropTypes.arrayOf(
+      React.PropTypes.shape({
+        key: React.PropTypes.string.isRequired,
+        page: React.PropTypes.string.isRequired,
+        props: React.PropTypes.object
+      })
     )
   };
 
   static defaultProps = {
     pages: {},
-    path: []
+    path: [],
+    childPages: []
   };
 
   constructor(props, context) {
@@ -103,18 +113,14 @@ export default class Page extends React.Component {
     }
   }
 
-  pageRender(descriptor, key) {
+  pageRender(descriptor) {
     let Page = this.props.pages[descriptor.page];
     let props = descriptor.props;
-    let path = concat(this.props.path, key);
-    return <Page path={path} {...props} ref={(r) => this.pages[key] = r} />
+    let path = concat(this.props.path, descriptor.key);
+    return <Page path={path} {...props} ref={(r) => this.pages[descriptor.key] = r} />
   }
 
   getPageForKey() {
     return this.pages[key];
-  }
-
-  getPageDescriptorForKey() {
-    return undefined;
   }
 }
