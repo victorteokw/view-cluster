@@ -30,8 +30,8 @@ export default class StackPage extends Page {
       <NavigationBar ref="navigationBar" />
       <ReactTransitionGroup component="div" className="stack">
         {
-          this.props.stack.map((i) => {
-            return <StackView key={i.key}>
+          this.props.stack.map((i, n, a) => {
+            return <StackView key={i.key} first={n === 0} last={n === a.length - 1}>
               {this.pageRender(i.page, i.key)}
             </StackView>
           })
