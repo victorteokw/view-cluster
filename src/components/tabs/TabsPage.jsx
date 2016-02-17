@@ -13,6 +13,10 @@ Page.prototype.beyondTabBar = function() {
   return false;
 };
 
+Page.prototype.selectTab = function(key) {
+
+};
+
 export default class TabsPage extends Page {
 
   static propTypes = {

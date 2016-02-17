@@ -21,7 +21,8 @@ export default class Page extends React.Component {
         page: React.PropTypes.string.isRequired,
         props: React.PropTypes.object
       })
-    )
+    ),
+    dispatch: React.PropTypes.func
   };
 
   static defaultProps = {
@@ -117,7 +118,10 @@ export default class Page extends React.Component {
     let Page = this.props.pages[descriptor.page];
     let props = descriptor.props;
     let path = concat(this.props.path, descriptor.key);
-    return <Page path={path} {...props} ref={(r) => this.pages[descriptor.key] = r} />
+    return <Page path={path} {...props} ref={(r) => {
+      this.pages[descriptor.key] = r;
+      r.superPage = this;
+     }} />
   }
 
   getPageForKey() {
