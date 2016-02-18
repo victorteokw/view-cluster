@@ -68,7 +68,11 @@ export default class NavigationBar extends React.Component {
   }
 
   render() {
-    return <div className={classNames('navigation-bar', this.animate, this.dominantStackItem ? this.dominantStackItem.variant : false)}>
+    let className = classNames('navigation-bar', {
+      animate: this.animate,
+      variant: this.dominantStackItem ? this.dominantStackItem.variant : false
+    });
+    return <div className={className}>
       {this.renderStackItem('top', this.topStackItem)}
       {this.renderStackItem('bottom', this.bottomStackItem)}
     </div>

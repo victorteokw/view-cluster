@@ -1,6 +1,7 @@
 import React from 'react';
 
 import concat from 'lodash/concat';
+import isEqual from 'lodash/isEqual';
 
 let EMPTY = 'EMPTY';
 let LOADING = 'LOADING';
@@ -23,14 +24,16 @@ export default class Page extends React.Component {
       })
     ),
     dispatch: React.PropTypes.func,
-    root: React.PropTypes.bool.isRequired
+    root: React.PropTypes.bool.isRequired,
+    pure: React.PropTypes.bool.isRequired
   };
 
   static defaultProps = {
     pages: {},
     path: [],
     childPages: [],
-    root: false
+    root: false,
+    pure: true
   };
 
   constructor(props, context) {
@@ -49,6 +52,10 @@ export default class Page extends React.Component {
     if (this.props.root) {
       this.pageWillDisappear();
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return !(this.props.pure && isEqual(this.props, nextProps) && isEqual(this.state, nextState));
   }
 
   componentWillUpdate(_, __) {}
