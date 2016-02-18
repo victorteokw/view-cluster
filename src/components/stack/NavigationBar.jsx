@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import assign from 'lodash/assign';
 import isEqual from 'lodash/isEqual';
 import last from 'lodash/last';
+import dropRight from 'lodash/dropRight';
 
 let navItemContentPropTypes = {
   content: React.PropTypes.oneOfType(
@@ -66,10 +67,6 @@ export default class NavigationBar extends React.Component {
     }
   }
 
-  style(className, index) {
-    return {};
-  }
-
   render() {
     return <div className={classNames('navigation-bar', this.animate, this.dominantStackItem ? this.dominantStackItem.variant : false)}>
       {this.renderStackItem('top', this.topStackItem)}
@@ -80,9 +77,9 @@ export default class NavigationBar extends React.Component {
   renderStackItem(className, item) {
     if (!item) return null;
     return <div className={classNames('item', className)}>
-      {item.left ? renderItemPartial(item.left, 'left') : null}
-      {item.title ? renderItemPartial(item.title, 'title') : null}
-      {item.right ? renderItemPartial(item.right, 'right') : null}
+      {item.left ? this.renderItemPartial(item.left, 'left') : null}
+      {item.title ? this.renderItemPartial(item.title, 'title') : null}
+      {item.right ? this.renderItemPartial(item.right, 'right') : null}
     </div>
   }
 
