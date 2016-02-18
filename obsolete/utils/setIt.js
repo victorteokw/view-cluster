@@ -1,10 +1,10 @@
 import selectIt from './selectIt';
 import pathToArray from './pathToArray';
 
-import dropRight from 'lodash/dropRight';
-import last from 'lodash/last';
-import isArray from 'lodash/isArray';
-import findIndex from 'lodash/findIndex';
+import dropRight from '../../node_modules/lodash/dropRight';
+import last from '../../node_modules/lodash/last';
+import isArray from '../../node_modules/lodash/isArray';
+import findIndex from '../../node_modules/lodash/findIndex';
 
 export default function setIt(o, p, v) {
   p = pathToArray(p);

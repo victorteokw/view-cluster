@@ -1,4 +1,4 @@
-import pipe from '../../src/utils/pipe';
+import pipe from '../../obsolete/utils/pipe';
 
 import assert from 'assert';
 

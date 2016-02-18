@@ -1,4 +1,4 @@
-import selectIt from '../../src/utils/selectIt';
+import selectIt from '../../obsolete/utils/selectIt';
 
 import assert from 'assert';
 

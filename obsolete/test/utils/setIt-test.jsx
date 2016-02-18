@@ -1,4 +1,4 @@
-import setIt from '../../src/utils/setIt';
+import setIt from '../../obsolete/utils/setIt';
 
 import assert from 'assert';
 

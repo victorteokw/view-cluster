@@ -1,4 +1,4 @@
-import pathToArray from '../../src/utils/pathToArray';
+import pathToArray from '../../obsolete/utils/pathToArray';
 
 import assert from 'assert';
 
