@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 export default class StackView extends React.Component {
 
@@ -33,8 +34,14 @@ export default class StackView extends React.Component {
   }
 
   render() {
+    let shadowClass = classNames('stack-item-shadow', {
+      on: this.props.last
+    });
     return <div className="stack-view">
-      {this.props.children}
+      <div className="stack-item-page-container">
+        {this.props.children}
+      </div>
+      <div className={shadowClass}></div>
     </div>
   }
 
