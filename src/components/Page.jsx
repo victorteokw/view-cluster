@@ -22,13 +22,15 @@ export default class Page extends React.Component {
         props: React.PropTypes.object
       })
     ),
-    dispatch: React.PropTypes.func
+    dispatch: React.PropTypes.func,
+    root: React.PropTypes.bool.isRequired
   };
 
   static defaultProps = {
     pages: {},
     path: [],
-    childPages: []
+    childPages: [],
+    root: false
   };
 
   constructor(props, context) {
