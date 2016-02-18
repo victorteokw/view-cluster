@@ -5,7 +5,7 @@ import merge from 'lodash/merge';
 
 export default function renderRootPage(state, pages, dispatch) {
   pages = merge({}, pages, defaultPages);
-  let Page = state.page;
+  let Page = pages[state.page];
   let props = state.props;
   return <Page path={[]} {...props} pages={pages} dispatch={dispatch} root={true} />
 }

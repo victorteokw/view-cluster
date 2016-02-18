@@ -2,19 +2,26 @@ import React from 'react';
 import Page from './../Page';
 import TabBar from './TabBar';
 import TabView from './TabView';
-import TabBarItem from './TabBarItem.jsx';
+import TabBarItem from './TabBarItem';
 
 import omit from 'lodash/omit';
 import difference from 'lodash/difference';
 import pick from 'lodash/pick';
 import map from 'lodash/map';
+import find from 'lodash/find';
+import cloneDeep from 'lodash/cloneDeep';
+import each from 'lodash/each';
+
+import {setPageProps} from '../../action/creators';
 
 Page.prototype.beyondTabBar = function() {
   return false;
 };
 
 Page.prototype.selectTab = function(key) {
-
+  if (this.superPage) {
+    this.superPage.selectTab(key);
+  }
 };
 
 export default class TabsPage extends Page {
@@ -50,7 +57,7 @@ export default class TabsPage extends Page {
       <TabBar>
         {
           this.props.childPages.map((t) => {
-            return <TabBarItem {...omit(t, 'page', 'props')} />
+            return <TabBarItem {...omit(t, 'page', 'props')} callback={this.selectTab.bind(this, t.key)} />
           })
         }
       </TabBar>
@@ -58,11 +65,11 @@ export default class TabsPage extends Page {
   }
 
   getSelectedPage() {
-    return this.pages[this.getSelectedPageKey()];
+    return this.unwrapPage(this.pages[this.getSelectedPageKey()]);
   }
 
   getSelectedPageKey(props = this.props) {
-    return find(props.tabs, (t) => t.selected === true).key;
+    return find(props.childPages, (t) => t.selected === true).key;
   }
 
   componentDidMount() {
@@ -125,5 +132,14 @@ export default class TabsPage extends Page {
   pageDidDisappear() {
     super.pageDidDisappear();
     this.getSelectedPage().pageDidDisappear();
+  }
+
+  selectTab(key) {
+    let newChildPageProps = cloneDeep(this.props.childPages);
+    each(newChildPageProps, (c) => {
+      c.selected = c.key === key;
+      return true;
+    });
+    this.props.dispatch(setPageProps(this.props.path, {childPages: newChildPageProps}));
   }
 }

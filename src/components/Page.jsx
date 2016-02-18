@@ -39,6 +39,22 @@ export default class Page extends React.Component {
     this.pages = {};
   }
 
+  componentDidMount() {
+    if (this.props.root) {
+      this.pageWillAppear();
+    }
+  }
+
+  componentWillUnmount() {
+    if (this.props.root) {
+      this.pageWillDisappear();
+    }
+  }
+
+  componentWillUpdate(_, __) {}
+
+  componentDidUpdate(_, __) {}
+
   noLazyLoading() {
     this.state = {status: LOADED};
   }
@@ -121,12 +137,24 @@ export default class Page extends React.Component {
     let props = descriptor.props;
     let path = concat(this.props.path, descriptor.key);
     return <Page path={path} pages={this.props.pages} dispatch={this.props.dispatch} {...props} ref={(r) => {
+      r = this.unwrapPage(r);
       this.pages[descriptor.key] = r;
-      r.superPage = this;
+      if (r) {
+        r.superPage = this;
+      }
      }} />
   }
 
   getPageForKey() {
     return this.pages[key];
+  }
+
+  unwrapPage(page) {
+    if (!page) return null;
+    if (page.getWrappedInstance) {
+      return page.getWrappedInstance();
+    } else {
+      return page;
+    }
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
-import ReactTransitionGroup from './ReactTransitionGroup';
+import ReactTransitionGroup from '../ReactTransitionGroup';
 import Page from '../Page';
-import StackView from './StackView.jsx';
+import StackView from './StackView';
 import NavigationBar from './NavigationBar';
 
 import last from 'lodash/last';
@@ -43,11 +43,11 @@ export default class StackPage extends Page {
   }
 
   getSelectedPage() {
-    return this.pages[this.getSelectedPageKey()];
+    return this.unwrapPage(this.pages[this.getSelectedPageKey()]);
   }
 
   getSelectedPageKey(props = this.props) {
-    return last(this.props.stack).key;
+    return last(this.props.childPages).key;
   }
 
   componentDidMount() {
@@ -80,7 +80,7 @@ export default class StackPage extends Page {
   }
 
   updateNavigationBar() {
-    let keyArray = map(this.props.stack, (i) => i.key);
+    let keyArray = map(this.props.childPages, (i) => i.key);
     let pageArray = map(keyArray, (k) => this.pages[k]);
     let itemsArray = map(pageArray, (p) => p.navigationItem());
     this.refs.navigationBar.setState({stack: itemsArray});

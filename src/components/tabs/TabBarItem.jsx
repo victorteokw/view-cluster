@@ -5,15 +5,11 @@ import classNames from 'classnames';
 export default class TabBarItem extends React.Component {
 
   static propTypes = {
-    tabs: React.PropTypes.arrayOf(
-      React.PropTypes.shape({
-        key: React.PropTypes.string.isRequired,
-        title: React.PropTypes.string.isRequired,
-        selected: React.PropTypes.bool.isRequired,
-        icon: React.PropTypes.string.isRequired,
-        selectedIcon: React.PropTypes.string.isRequired
-      })
-    )
+    title: React.PropTypes.string.isRequired,
+    selected: React.PropTypes.bool.isRequired,
+    icon: React.PropTypes.string.isRequired,
+    selectedIcon: React.PropTypes.string.isRequired,
+    callback: React.PropTypes.func
   };
 
   constructor(props, context) {
@@ -23,7 +19,7 @@ export default class TabBarItem extends React.Component {
   render() {
     let itemClassName = classNames('item', {selected: this.props.selected});
     return <TextButton component="div" className={itemClassName} touchUpInside={this.props.callback}>
-      <img className="icon" src={this.props.selected ? this.props.highlightIcon : this.props.icon} />
+      <img className="icon" src={this.props.selected ? this.props.selectedIcon : this.props.icon} />
       <div className="title">{this.props.title}</div>
     </TextButton>
   }
