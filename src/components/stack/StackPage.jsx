@@ -80,6 +80,10 @@ export default class StackPage extends Page {
     this.updateNavigationBar();
   }
 
+  shouldComponentUpdate() {
+    return true;
+  }
+
   updateNavigationBar() {
     let keyArray = map(this.props.childPages, (i) => i.key);
     let pageArray = map(keyArray, (k) => this.pages[k]);

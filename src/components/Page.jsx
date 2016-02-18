@@ -24,16 +24,14 @@ export default class Page extends React.Component {
       })
     ),
     dispatch: React.PropTypes.func,
-    root: React.PropTypes.bool.isRequired,
-    pure: React.PropTypes.bool.isRequired
+    root: React.PropTypes.bool.isRequired
   };
 
   static defaultProps = {
     pages: {},
     path: [],
     childPages: [],
-    root: false,
-    pure: true
+    root: false
   };
 
   constructor(props, context) {
@@ -55,7 +53,7 @@ export default class Page extends React.Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    return !(this.props.pure && isEqual(this.props, nextProps) && isEqual(this.state, nextState));
+    return !(this.pureRender() && isEqual(this.props, nextProps) && isEqual(this.state, nextState));
   }
 
   componentWillUpdate(_, __) {}
@@ -163,5 +161,9 @@ export default class Page extends React.Component {
     } else {
       return page;
     }
+  }
+
+  pureRender() {
+    return false;
   }
 }
