@@ -118,7 +118,7 @@ export default class Page extends React.Component {
     let Page = this.props.pages[descriptor.page];
     let props = descriptor.props;
     let path = concat(this.props.path, descriptor.key);
-    return <Page path={path} {...props} ref={(r) => {
+    return <Page path={path} pages={this.props.pages} dispatch={this.props.dispatch} {...props} ref={(r) => {
       this.pages[descriptor.key] = r;
       r.superPage = this;
      }} />
