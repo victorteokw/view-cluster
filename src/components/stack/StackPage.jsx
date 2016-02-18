@@ -5,6 +5,7 @@ import StackView from './StackView';
 import NavigationBar from './NavigationBar';
 
 import last from 'lodash/last';
+import map from 'lodash/map';
 
 Page.prototype.navigationItem = function() {
   return {};
