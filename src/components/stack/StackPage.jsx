@@ -61,7 +61,7 @@ export default class StackPage extends Page {
   }
 
   getSelectedPageKey(props = this.props) {
-    return last(this.props.childPages).key;
+    return last(props.childPages).key;
   }
 
   componentDidMount() {
@@ -71,14 +71,6 @@ export default class StackPage extends Page {
 
   componentWillUpdate(nextProps, nextState) {
     super.componentWillUpdate(nextProps, nextState);
-    let currentSelectedKey = this.getSelectedPageKey();
-    let nextSelectedKey = this.getSelectedPageKey(nextProps);
-    if (nextSelectedKey !== currentSelectedKey) {
-      this.getSelectedPage().pageWillDisappear();
-      if (this.pages[nextSelectedKey]) {
-        this.pages[nextSelectedKey].pageWillAppear();
-      }
-    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -86,9 +78,9 @@ export default class StackPage extends Page {
     let currentSelectedKey = this.getSelectedPageKey();
     let previousSelectedKey = this.getSelectedPageKey(prevProps);
     if (currentSelectedKey !== previousSelectedKey) {
-      this.getSelectedPage().pageDidAppear();
+      this.getSelectedPage().pageWillAppear();
       if (this.pages[previousSelectedKey]) {
-        this.pages[previousSelectedKey].pageDidDisappear();
+        this.pages[previousSelectedKey].pageWillDisappear();
       }
     }
     this.updateNavigationBar();
