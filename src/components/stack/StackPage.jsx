@@ -40,6 +40,7 @@ export default class StackPage extends Page {
 
   constructor(props, context) {
     super(props, context);
+    this.containers = {};
     this.noLazyLoading();
   }
 
@@ -49,7 +50,7 @@ export default class StackPage extends Page {
       <ReactTransitionGroup component="div" className="stack">
         {
           this.props.childPages.map((i, n, a) => {
-            return <StackView key={i.key} first={n === 0} last={n === a.length - 1}>
+            return <StackView key={i.key} first={n === 0} last={n === a.length - 1} ref={(r) => this.containers[i.key] = r}>
               {this.pageRender(i)}
             </StackView>
           })
@@ -93,6 +94,7 @@ export default class StackPage extends Page {
       return;
     }
     this.updateNavigationBar();
+    this.updatePageContainers();
     this.updateTabBar();
   }
 
@@ -116,6 +118,21 @@ export default class StackPage extends Page {
     } else {
       this.showTabBar();
     }
+  }
+
+  updatePageContainers() {
+    let keyArray = map(this.props.childPages, (i) => i.key);
+    let higherOrder = false;
+    map(keyArray, (k) => {
+      let p = this.pages[k];
+      if (p.beyondTabBar()) {
+        higherOrder = true;
+        this.containers[k].setState({beyondTabBar: true});
+      } else {
+        this.containers[k].setState({beyondTabBar: false});
+      }
+    });
+
   }
 
   componentWillUnmount() {

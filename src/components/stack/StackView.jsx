@@ -11,7 +11,7 @@ export default class StackView extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    this.state = {out: !this.props.first};
+    this.state = {out: !this.props.first, beyondTabBar: false};
   }
 
   componentWillEnter(callback) {
@@ -38,7 +38,8 @@ export default class StackView extends React.Component {
     let className = classNames("stack-view", {
       last: this.props.last,
       first: this.props.first,
-      out: this.state.out
+      out: this.state.out,
+      'beyond-tab-bar': this.state.beyondTabBar
     });
     return <div className={className}>
       <div className="stack-item-page-container">
