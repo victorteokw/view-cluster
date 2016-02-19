@@ -36,7 +36,7 @@ export default class ModalsPage extends Page {
   }
 
   renderPage() {
-    return <ReactTransitionGroup component="div" className="modals">
+    return <ReactTransitionGroup component="div" className="modals-page">
       {
         this.props.childPages.map((m) => {
           return <ModalView key={m.key}>
