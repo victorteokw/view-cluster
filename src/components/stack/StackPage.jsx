@@ -8,6 +8,7 @@ import last from 'lodash/last';
 import map from 'lodash/map';
 import cloneDeep from 'lodash/cloneDeep';
 import find from 'lodash/find';
+import isEqual from 'lodash/isEqual';
 
 Page.prototype.navigationItem = function() {
   return {};
@@ -84,10 +85,13 @@ export default class StackPage extends Page {
         this.pages[previousSelectedKey].pageWillDisappear();
       }
     }
-    this.update();
+    this.update(prevProps, prevState);
   }
 
-  update() {
+  update(prevProps, prevState) {
+    if (prevProps && prevState && isEqual(this.props, prevProps) && isEqual(this.state, prevState)) {
+      return;
+    }
     this.updateNavigationBar();
     this.updateTabBar();
   }
