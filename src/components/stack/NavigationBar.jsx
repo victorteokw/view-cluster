@@ -18,6 +18,11 @@ let navItemContentPropTypes = {
   )
 };
 
+let _uniq = 0;
+let uniq = function() {
+  return 'must be unique '+ _uniq++;
+};
+
 let empty = function() {};
 
 let purifyItem = function(item) {
@@ -70,7 +75,7 @@ export default class NavigationBar extends React.Component {
   render() {
     let className = classNames('navigation-bar', {
       animate: this.animate
-    }, this.dominantStackItem ? this.dominantStackItem.variant : false);
+    }, this.animate, this.dominantStackItem ? this.dominantStackItem.variant : false);
     return <div className={className}>
       {this.renderStackItem('top', this.topStackItem)}
       {this.renderStackItem('bottom', this.bottomStackItem)}
@@ -87,7 +92,7 @@ export default class NavigationBar extends React.Component {
   }
 
   renderItemPartial(partial, className) {
-    return <TextButton className={className} touchUpInside={partial.event || empty}>
+    return <TextButton key={uniq()} className={className} touchUpInside={partial.event || empty}>
       {partial.content}
       {partial.badge ? <div className="badge">{partial.badge}</div> : null}
     </TextButton>
