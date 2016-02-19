@@ -24,6 +24,18 @@ Page.prototype.selectTab = function(key) {
   }
 };
 
+Page.prototype.showTabBar = function() {
+  if (this.superPage) {
+    this.superPage.showTabBar();
+  }
+};
+
+Page.prototype.hideTabBar = function() {
+  if (this.superPage) {
+    this.superPage.hideTabBar();
+  }
+};
+
 export default class TabsPage extends Page {
 
   static propTypes = {
@@ -54,7 +66,7 @@ export default class TabsPage extends Page {
           </TabView>
         })
       }
-      <TabBar>
+      <TabBar ref="tabBar">
         {
           this.props.childPages.map((t) => {
             return <TabBarItem {...omit(t, 'page', 'props')} callback={this.selectTab.bind(this, t.key)} />
@@ -78,11 +90,6 @@ export default class TabsPage extends Page {
 
   componentWillUpdate(nextProps, nextState) {
     super.componentWillUpdate(nextProps, nextState);
-    //let newPageKeys = nextProps.tabs.map((t) => t.key);
-    //let currentPageKeys = this.props.tabs.map((t) => t.key);
-    //let keysToAdd = difference(newPageKeys, currentPageKeys);
-    //let keysToRemove = difference(currentPageKeys, newPageKeys);
-    //map(pick(this.pages, keysToRemove), (p) => p.pageWillDisappear());
     let currentSelectedKey = this.getSelectedPageKey();
     let nextSelectedKey = this.getSelectedPageKey(nextProps);
     if (nextSelectedKey !== currentSelectedKey) {
@@ -95,11 +102,6 @@ export default class TabsPage extends Page {
 
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
-    //let oldPageKeys = prevProps.tabs.map((t) => t.key);
-    //let currentPageKeys = this.props.tabs.map((t) => t.key);
-    //let keysAdded = difference(currentPageKeys, oldPageKeys);
-    //let keysRemoved = difference(oldPageKeys, currentPageKeys);
-    //map(keysRemoved, (k) => delete this.page[k]);
     let currentSelectedKey = this.getSelectedPageKey();
     let previousSelectedKey = this.getSelectedPageKey(prevProps);
     if (currentSelectedKey !== previousSelectedKey) {
@@ -141,5 +143,13 @@ export default class TabsPage extends Page {
       return true;
     });
     this.setPageProps({childPages: newChildPageProps});
+  }
+
+  showTabBar() {
+    this.refs.tabBar.setState({hide: false});
+  }
+
+  hideTabBar() {
+    this.refs.tabBar.setState({hide: true});
   }
 }

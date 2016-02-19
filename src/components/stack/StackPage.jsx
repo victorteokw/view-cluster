@@ -7,6 +7,7 @@ import NavigationBar from './NavigationBar';
 import last from 'lodash/last';
 import map from 'lodash/map';
 import cloneDeep from 'lodash/cloneDeep';
+import find from 'lodash/find';
 
 Page.prototype.navigationItem = function() {
   return {};
@@ -66,7 +67,7 @@ export default class StackPage extends Page {
 
   componentDidMount() {
     super.componentDidMount();
-    this.updateNavigationBar();
+    this.update();
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -83,7 +84,12 @@ export default class StackPage extends Page {
         this.pages[previousSelectedKey].pageWillDisappear();
       }
     }
+    this.update();
+  }
+
+  update() {
     this.updateNavigationBar();
+    this.updateTabBar();
   }
 
   shouldComponentUpdate() {
@@ -95,6 +101,17 @@ export default class StackPage extends Page {
     let pageArray = map(keyArray, (k) => this.pages[k]);
     let itemsArray = map(pageArray, (p) => p.navigationItem());
     this.refs.navigationBar.setState({stack: itemsArray});
+  }
+
+  updateTabBar() {
+    let keyArray = map(this.props.childPages, (i) => i.key);
+    let pageArray = map(keyArray, (k) => this.pages[k]);
+    let hideTabBar = find(pageArray, (p) => p.beyondTabBar());
+    if (hideTabBar) {
+      this.hideTabBar();
+    } else {
+      this.showTabBar();
+    }
   }
 
   componentWillUnmount() {
