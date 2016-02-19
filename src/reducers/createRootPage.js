@@ -3,7 +3,7 @@ import {setPageProps, replacePageProps} from '../action/creators';
 
 import map from 'lodash/map';
 import find from 'lodash/find';
-import merge from 'lodash/merge';
+import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
 
 function setChildPagePropsAtPath(path, props, state) {
@@ -11,7 +11,7 @@ function setChildPagePropsAtPath(path, props, state) {
   map(path, (key) => {
     sel = find(sel.props.childPages, (p) => p.key === key);
   });
-  sel.props = merge({}, sel.props, props);
+  sel.props = assign({}, sel.props, props);
   return state;
 }
 
