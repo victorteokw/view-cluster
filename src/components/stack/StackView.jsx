@@ -11,6 +11,7 @@ export default class StackView extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.state = {out: !this.props.first};
   }
 
   componentWillEnter(callback) {
@@ -18,7 +19,7 @@ export default class StackView extends React.Component {
       callback();
     } else {
       setTimeout(() => {
-        this.setState({shown: true});
+        this.setState({out: false});
       }, 1);
       setTimeout(callback, 0.3 * 1000);
     }
@@ -28,7 +29,7 @@ export default class StackView extends React.Component {
     if (this.props.first) {
       callback();
     } else {
-      this.setState({shown: false});
+      this.setState({out: true});
       setTimeout(callback, 0.3 * 1000);
     }
   }
@@ -36,7 +37,8 @@ export default class StackView extends React.Component {
   render() {
     let className = classNames("stack-view", {
       last: this.props.last,
-      first: this.props.first
+      first: this.props.first,
+      out: this.state.out
     });
     return <div className={className}>
       <div className="stack-item-page-container">
