@@ -140,6 +140,6 @@ export default class TabsPage extends Page {
       c.selected = c.key === key;
       return true;
     });
-    this.props.dispatch(setPageProps(this.props.path, {childPages: newChildPageProps}));
+    this.setPageProps({childPages: newChildPageProps});
   }
 }

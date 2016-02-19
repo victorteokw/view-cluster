@@ -6,9 +6,22 @@ import NavigationBar from './NavigationBar';
 
 import last from 'lodash/last';
 import map from 'lodash/map';
+import cloneDeep from 'lodash/cloneDeep';
 
 Page.prototype.navigationItem = function() {
   return {};
+};
+
+Page.prototype.pushStack = function(desc) {
+  if (this.superPage) {
+    this.superPage.pushStack(desc);
+  }
+};
+
+Page.prototype.popStack = function() {
+  if (this.superPage) {
+    this.superPage.popStack();
+  }
 };
 
 export default class StackPage extends Page {
@@ -114,5 +127,17 @@ export default class StackPage extends Page {
   pageDidDisappear() {
     super.pageDidDisappear();
     this.getSelectedPage().pageDidDisappear();
+  }
+
+  pushStack(desc) {
+    let newChildPageProps = cloneDeep(this.props.childPages);
+    newChildPageProps.push(desc);
+    this.setPageProps({childPages: newChildPageProps});
+  }
+
+  popStack() {
+    let newChildPageProps = cloneDeep(this.props.childPages);
+    newChildPageProps.pop();
+    this.setPageProps({childPages: newChildPageProps});
   }
 }

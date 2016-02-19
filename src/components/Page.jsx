@@ -7,6 +7,8 @@ let EMPTY = 'EMPTY';
 let LOADING = 'LOADING';
 let LOADED = 'LOADED';
 
+import {setPageProps, replacePageProps} from '../action/creators';
+
 export default class Page extends React.Component {
 
   static propTypes = {
@@ -165,5 +167,13 @@ export default class Page extends React.Component {
 
   pureRender() {
     return false;
+  }
+
+  setPageProps(newProps) {
+    this.props.dispatch(setPageProps(this.props.path, newProps));
+  }
+
+  replacePageProps(newProps) {
+    this.props.dispatch(replacePageProps(this.props.path, newProps));
   }
 }
