@@ -152,4 +152,8 @@ export default class TabsPage extends Page {
   hideTabBar() {
     this.refs.tabBar.setState({hide: true});
   }
+
+  pureRender() {
+    return false;
+  }
 }

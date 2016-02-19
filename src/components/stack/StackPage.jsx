@@ -170,4 +170,8 @@ export default class StackPage extends Page {
     newChildPageProps.pop();
     this.setPageProps({childPages: newChildPageProps});
   }
+
+  pureRender() {
+    return false;
+  }
 }

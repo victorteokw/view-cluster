@@ -166,7 +166,7 @@ export default class Page extends React.Component {
   }
 
   pureRender() {
-    return false;
+    return true;
   }
 
   setPageProps(newProps) {
