@@ -48,6 +48,10 @@ export default class NavigationBar extends React.Component {
     this.state = assign({stack: []}, this.props);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return !isEqual(nextState, this.state);
+  }
+
   componentWillUpdate(nextProps, nextState) {
     let pureNextStack = nextState.stack.map(purifyItem);
     let pureStack = this.state.stack.map(purifyItem);
