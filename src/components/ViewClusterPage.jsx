@@ -1,24 +1,10 @@
 import React from 'react';
-import ReactTransitionGroup from '../ReactTransitionGroup';
-import Page from '../Page';
-import ModalView from './ModalView';
+import Page from './Page';
+import ModalsPage from './modals/ModalsPage';
 
-import cloneDeep from 'lodash/cloneDeep';
-import filter from 'lodash/filter';
+import drop from 'lodash/drop';
 
-Page.prototype.presentModal = function(props) {
-  if (this.superPage) {
-    this.superPage.presentModal(props);
-  }
-};
-
-Page.prototype.dismissModal = function(key) {
-  if (this.superPage) {
-    this.superPage.dismissModal(key);
-  }
-};
-
-export default class ModalsPage extends Page {
+export default class ViewClusterPage extends Page {
 
   static propTypes = {
     childPages: React.PropTypes.arrayOf(
@@ -36,15 +22,17 @@ export default class ModalsPage extends Page {
   }
 
   renderPage() {
-    return <ReactTransitionGroup component="div" className="modals">
-      {
-        this.props.childPages.map((m) => {
-          return <ModalView key={m.key}>
-            {this.pageRender(m)}
-          </ModalView>
-        })
-      }
-    </ReactTransitionGroup>
+    return <div className="view-cluster-page">
+      {this.pageRender(this.props.childPages[0])}
+      {this.props.children}
+      {this.pageRender({
+        key: 'view-cluster-modal-page',
+        page: 'ModalsPage',
+        props: {
+          childPages: drop(this.props.childPages)
+        }
+      })}
+    </div>
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -66,7 +54,11 @@ export default class ModalsPage extends Page {
   }
 
   getSelectedPageKey(props = this.props) {
-    return last(props.childPages).key;
+    if (props.childPages.length === 1) {
+      return props.childPages[0].key;
+    } else if (props.childPages.length > 1) {
+      return 'view-cluster-modal-page';
+    } else return undefined;
   }
 
   pageWillAppear() {
@@ -90,13 +82,14 @@ export default class ModalsPage extends Page {
   }
 
   presentModal(props) {
-    let newChildPageProps = cloneDeep(this.props.childPages);
-    newChildPageProps.push(props);
-    this.setPageProps({childPages: newChildPageProps});
+    this.pages['view-cluster-modal-page'].presentModal(props);
   }
 
   dismissModal(key) {
-    let newChildPageProps = filter(cloneDeep(this.props.childPages), (p) => p.key !== key);
-    this.setPageProps({childPages: newChildPageProps});
+    this.pages['view-cluster-modal-page'].dismissModal(key);
+  }
+
+  pureRender() {
+    return false;
   }
 }
