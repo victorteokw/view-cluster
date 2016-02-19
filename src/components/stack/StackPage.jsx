@@ -53,6 +53,7 @@ export default class StackPage extends Page {
 
   componentDidMount() {
     super.componentDidMount();
+    this.updateNavigationBar();
   }
 
   componentWillUpdate(nextProps, nextState) {
