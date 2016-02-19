@@ -34,14 +34,15 @@ export default class StackView extends React.Component {
   }
 
   render() {
-    let shadowClass = classNames('stack-item-shadow', {
-      on: this.props.last
+    let className = classNames("stack-view", {
+      last: this.props.last,
+      first: this.props.first
     });
-    return <div className="stack-view">
+    return <div className={className}>
       <div className="stack-item-page-container">
         {this.props.children}
       </div>
-      <div className={shadowClass}></div>
+      <div className="stack-item-shadow"></div>
     </div>
   }
 
