@@ -8,13 +8,15 @@ suite('createRootPage', function() {
 
     test('it should work for simplest case', function() {
       let rootPage = createRootPage({
+        key: 'some',
         page: 'SomePage',
         props: {
           showTopBar: true,
           hideBottomBar: true
         }
       });
-      assert.deepEqual(rootPage(undefined, setPageProps([], {hideBottomBar: false})), {
+      assert.deepEqual(rootPage(undefined, setPageProps(['some'], {hideBottomBar: false})), {
+        key: 'some',
         page: 'SomePage',
         props: {
           showTopBar: true,
@@ -25,6 +27,7 @@ suite('createRootPage', function() {
 
     test('it should work for nested case', function() {
       let rootPage = createRootPage({
+        key: 'some',
         page: 'SomePage',
         props: {
           childPages: [
@@ -59,7 +62,8 @@ suite('createRootPage', function() {
           ]
         }
       });
-      assert.deepEqual(rootPage(undefined, setPageProps(['tab2', 'tab2'], {c:3})), {
+      assert.deepEqual(rootPage(undefined, setPageProps(['some', 'tab2', 'tab2'], {c:3})), {
+        key: 'some',
         page: 'SomePage',
         props: {
           childPages: [
@@ -101,13 +105,15 @@ suite('createRootPage', function() {
 
     test('it should work for simplest case', function() {
       let rootPage = createRootPage({
+        key: 'some',
         page: 'SomePage',
         props: {
           showTopBar: true,
           hideBottomBar: true
         }
       });
-      assert.deepEqual(rootPage(undefined, replacePageProps([], {hideBottomBar: false})), {
+      assert.deepEqual(rootPage(undefined, replacePageProps(['some'], {hideBottomBar: false})), {
+        key: 'some',
         page: 'SomePage',
         props: {
           hideBottomBar: false
@@ -118,6 +124,7 @@ suite('createRootPage', function() {
 
     test('it should work for nested case', function() {
       let rootPage = createRootPage({
+        key: 'some',
         page: 'SomePage',
         props: {
           childPages: [
@@ -152,7 +159,8 @@ suite('createRootPage', function() {
           ]
         }
       });
-      assert.deepEqual(rootPage(undefined, replacePageProps(['tab2', 'tab2'], {c:3})), {
+      assert.deepEqual(rootPage(undefined, replacePageProps(['some', 'tab2', 'tab2'], {c:3})), {
+        key: 'some',
         page: 'SomePage',
         props: {
           childPages: [

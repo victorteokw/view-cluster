@@ -7,7 +7,7 @@ export default function renderRootPage(state, pages, dispatch, children = null) 
   pages = merge({}, pages, defaultPages);
   let Page = pages[state.page];
   let props = state.props;
-  return <Page path={[]} {...props} pages={pages} dispatch={dispatch} root={true}>
+  return <Page path={[state.key]} {...props} pages={pages} dispatch={dispatch} root={true}>
     {children}
   </Page>
 }

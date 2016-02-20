@@ -5,6 +5,7 @@ import map from 'lodash/map';
 import find from 'lodash/find';
 import assign from 'lodash/assign';
 import cloneDeep from 'lodash/cloneDeep';
+import drop from 'lodash/drop';
 
 function setChildPagePropsAtPath(path, props, state) {
   let sel = state;
@@ -29,11 +30,17 @@ export default function createRootPage(initial) {
     switch (action.type) {
       case SET_PAGE_PROPS: {
         let {path, props} = action.payload;
-        return setChildPagePropsAtPath(path, props, cloneDeep(state));
+        if (path[0] === state.key) {
+          return setChildPagePropsAtPath(drop(path), props, cloneDeep(state));
+        }
+        return state;
       }
       case REPLACE_PAGE_PROPS: {
         let {path, props} = action.payload;
-        return replaceChildPagePropsAtPath(path, props, cloneDeep(state));
+        if (path[0] === state.key) {
+          return replaceChildPagePropsAtPath(drop(path), props, cloneDeep(state));
+        }
+        return state;
       }
       default:
         return state;
