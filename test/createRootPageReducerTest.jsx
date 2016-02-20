@@ -1,5 +1,5 @@
-import createRootPage from '../../src/createRootPageReducer';
-import {setPageProps, replacePageProps} from '../../src/action/creators';
+import createRootPage from '../src/createRootPageReducer';
+import {setPageProps, replacePageProps} from '../src/action/creators';
 import assert from 'assert';
 
 suite('createRootPage', function() {

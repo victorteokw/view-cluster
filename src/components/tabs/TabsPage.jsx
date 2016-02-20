@@ -13,6 +13,24 @@ import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 
 import {setPageProps} from '../../action/creators';
+import addPageAction from '../../addPageAction';
+
+addPageAction('SELECT_TAB', function(props, action) {
+  each(props.childPages, function(c) {
+    c.selected = c.key === action.payload.key;
+  });
+  return props;
+});
+
+function selectTab(path, key) {
+  return {
+    type: 'SELECT_TAB',
+    payload: {
+      path: path,
+      key: key
+    }
+  }
+}
 
 Page.prototype.beyondTabBar = function() {
   return false;
@@ -137,12 +155,7 @@ export default class TabsPage extends Page {
   }
 
   selectTab(key) {
-    let newChildPageProps = cloneDeep(this.props.childPages);
-    each(newChildPageProps, (c) => {
-      c.selected = c.key === key;
-      return true;
-    });
-    this.setPageProps({childPages: newChildPageProps});
+    this.props.dispatch(selectTab(this.props.path, key));
   }
 
   showTabBar() {
