@@ -5,6 +5,7 @@ import ModalView from './ModalView';
 
 import cloneDeep from 'lodash/cloneDeep';
 import filter from 'lodash/filter';
+import last from 'lodash/last';
 
 import addPageAction from '../../addPageAction';
 import {PRESENT_MODAL, DISMISS_MODAL} from './action/types';
