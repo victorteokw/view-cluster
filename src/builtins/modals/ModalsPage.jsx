@@ -81,7 +81,9 @@ export default class ModalsPage extends Page {
   }
 
   getSelectedPageKey(props = this.props) {
-    return last(props.childPages).key;
+    if (last(props.childPages)) {
+      return last(props.childPages).key;
+    }
   }
 
   pageWillAppear() {
