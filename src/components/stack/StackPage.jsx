@@ -10,6 +10,37 @@ import cloneDeep from 'lodash/cloneDeep';
 import find from 'lodash/find';
 import isEqual from 'lodash/isEqual';
 
+import addPageAction from '../../addPageAction';
+
+addPageAction('PUSH_STACK', function(props, action) {
+  props.childPages.push(action.payload.page);
+  return props;
+});
+
+function pushStack(path, page) {
+  return {
+    type: 'PUSH_STACK',
+    payload: {
+      path: path,
+      page: page
+    }
+  }
+}
+
+addPageAction('POP_STACK', function(props, action) {
+  props.childPages.pop();
+  return props;
+});
+
+function popStack(path) {
+  return {
+    type: 'POP_STACK',
+    payload: {
+      path: path
+    }
+  }
+}
+
 Page.prototype.navigationItem = function() {
   return {};
 };
@@ -160,15 +191,11 @@ export default class StackPage extends Page {
   }
 
   pushStack(desc) {
-    let newChildPageProps = cloneDeep(this.props.childPages);
-    newChildPageProps.push(desc);
-    this.setPageProps({childPages: newChildPageProps});
+    this.props.dispatch(pushStack(this.props.path, desc));
   }
 
   popStack() {
-    let newChildPageProps = cloneDeep(this.props.childPages);
-    newChildPageProps.pop();
-    this.setPageProps({childPages: newChildPageProps});
+    this.props.dispatch(popStack(this.props.path));
   }
 
   pureRender() {
