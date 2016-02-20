@@ -6,6 +6,38 @@ import ModalView from './ModalView';
 import cloneDeep from 'lodash/cloneDeep';
 import filter from 'lodash/filter';
 
+import addPageAction from '../../addPageAction';
+
+addPageAction('PRESENT_MODAL', function(props, action) {
+  props.childPages.push(action.payload.page);
+  return props;
+});
+
+function presentModal(path, page) {
+  return {
+    type: 'PRESENT_MODAL',
+    payload: {
+      path: path,
+      page: page
+    }
+  }
+}
+
+addPageAction('DISMISS_MODAL', function(props, action) {
+  filter(props.childPages, (p) => p.key !== action.payload.key);
+  return props;
+});
+
+function dismissModal(path, key) {
+  return {
+    type: 'DISMISS_MODAL',
+    payload: {
+      path: path,
+      key: key
+    }
+  }
+}
+
 Page.prototype.presentModal = function(props) {
   if (this.superPage) {
     this.superPage.presentModal(props);
@@ -90,13 +122,10 @@ export default class ModalsPage extends Page {
   }
 
   presentModal(props) {
-    let newChildPageProps = cloneDeep(this.props.childPages);
-    newChildPageProps.push(props);
-    this.setPageProps({childPages: newChildPageProps});
+    this.props.dispatch(presentModal(this.props.path, props));
   }
 
   dismissModal(key) {
-    let newChildPageProps = filter(cloneDeep(this.props.childPages), (p) => p.key !== key);
-    this.setPageProps({childPages: newChildPageProps});
+    this.props.dispatch(dismissModal(this.props.path, key));
   }
 }
