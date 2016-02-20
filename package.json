@@ -1,6 +1,6 @@
 {
   "name": "view-cluster",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "Aim to be the best solution for iOS style app in browser.",
   "main": "lib/index.js",
   "scripts": {
