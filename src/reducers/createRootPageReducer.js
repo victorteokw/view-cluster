@@ -25,8 +25,8 @@ function replaceChildPagePropsAtPath(path, props, state) {
   return state;
 }
 
-export default function createRootPage(initial) {
-  return function (state = initial, action) {
+export default function createRootPageReducer(initialState) {
+  return function (state = initialState, action) {
     switch (action.type) {
       case SET_PAGE_PROPS: {
         let {path, props} = action.payload;

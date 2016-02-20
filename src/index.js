@@ -1,10 +1,10 @@
-import createRootPage from './reducers/createRootPage';
+import createRootPageReducer from './reducers/createRootPageReducer';
 import renderRootPage from './components/renderRootPage';
 
 import Page from './components/Page';
 
 export {
-  createRootPage,
+  createRootPageReducer,
   renderRootPage,
   Page
 };
