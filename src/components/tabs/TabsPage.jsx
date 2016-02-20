@@ -5,14 +5,10 @@ import TabView from './TabView';
 import TabBarItem from './TabBarItem';
 
 import omit from 'lodash/omit';
-import difference from 'lodash/difference';
-import pick from 'lodash/pick';
-import map from 'lodash/map';
 import find from 'lodash/find';
 import cloneDeep from 'lodash/cloneDeep';
 import each from 'lodash/each';
 
-import {setPageProps} from '../../action/creators';
 import addPageAction from '../../addPageAction';
 
 addPageAction('SELECT_TAB', function(props, action) {
