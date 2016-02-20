@@ -1,4 +1,4 @@
-import createRootPage from '../../src/reducers/createRootPage';
+import createRootPage from '../../src/createRootPageReducer';
 import {setPageProps, replacePageProps} from '../../src/action/creators';
 import assert from 'assert';
 
