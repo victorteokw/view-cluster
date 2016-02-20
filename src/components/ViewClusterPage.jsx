@@ -3,6 +3,7 @@ import Page from './Page';
 import ModalsPage from './modals/ModalsPage';
 
 import drop from 'lodash/drop';
+import find from 'lodash/find';
 
 export default class ViewClusterPage extends Page {
 
@@ -22,16 +23,12 @@ export default class ViewClusterPage extends Page {
   }
 
   renderPage() {
+    let rootPage = find(this.props.childPages, (c) => c.key === 'root');
+    let modalsPage = find(this.props.childPages, (c) => c.key === 'modals');
     return <div className="view-cluster-page">
-      {this.pageRender(this.props.childPages[0])}
+      {this.pageRender(rootPage)}
       {this.props.children}
-      {this.pageRender({
-        key: 'view-cluster-modal-page',
-        page: 'ModalsPage',
-        props: {
-          childPages: drop(this.props.childPages)
-        }
-      })}
+      {this.pageRender(modalsPage)}
     </div>
   }
 
@@ -54,11 +51,12 @@ export default class ViewClusterPage extends Page {
   }
 
   getSelectedPageKey(props = this.props) {
-    if (props.childPages.length === 1) {
-      return props.childPages[0].key;
-    } else if (props.childPages.length > 1) {
-      return 'view-cluster-modal-page';
-    } else return undefined;
+    let modalsPage = find(props.childPages, (c) => c.key === 'modals');
+    if (modalsPage.props.childPages.length > 0) {
+      return 'modals';
+    } else {
+      return 'root';
+    }
   }
 
   pageWillAppear() {
@@ -82,11 +80,11 @@ export default class ViewClusterPage extends Page {
   }
 
   presentModal(props) {
-    this.pages['view-cluster-modal-page'].presentModal(props);
+    this.pages['modals'].presentModal(props);
   }
 
   dismissModal(key) {
-    this.pages['view-cluster-modal-page'].dismissModal(key);
+    this.pages['modals'].dismissModal(key);
   }
 
   pureRender() {
