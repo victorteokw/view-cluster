@@ -17,7 +17,7 @@ addPageAction(PRESENT_MODAL, function(props, action) {
 });
 
 addPageAction(DISMISS_MODAL, function(props, action) {
-  filter(props.childPages, (p) => p.key !== action.payload.key);
+  props.childPages = filter(props.childPages, (p) => p.key !== action.payload.key);
   return props;
 });
 
