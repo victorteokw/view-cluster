@@ -7,36 +7,18 @@ import cloneDeep from 'lodash/cloneDeep';
 import filter from 'lodash/filter';
 
 import addPageAction from '../../addPageAction';
+import {PRESENT_MODAL, DISMISS_MODAL} from './action/types';
+import {presentModal, dismissModal} from './action/creators';
 
-addPageAction('PRESENT_MODAL', function(props, action) {
+addPageAction(PRESENT_MODAL, function(props, action) {
   props.childPages.push(action.payload.page);
   return props;
 });
 
-function presentModal(path, page) {
-  return {
-    type: 'PRESENT_MODAL',
-    payload: {
-      path: path,
-      page: page
-    }
-  }
-}
-
-addPageAction('DISMISS_MODAL', function(props, action) {
+addPageAction(DISMISS_MODAL, function(props, action) {
   filter(props.childPages, (p) => p.key !== action.payload.key);
   return props;
 });
-
-function dismissModal(path, key) {
-  return {
-    type: 'DISMISS_MODAL',
-    payload: {
-      path: path,
-      key: key
-    }
-  }
-}
 
 Page.prototype.presentModal = function(props) {
   if (this.superPage) {

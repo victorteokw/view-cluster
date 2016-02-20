@@ -11,22 +11,15 @@ import each from 'lodash/each';
 
 import addPageAction from '../../addPageAction';
 
-addPageAction('SELECT_TAB', function(props, action) {
+import {SELECT_TAB} from './action/types';
+import {selectTab} from './action/creators';
+
+addPageAction(SELECT_TAB, function(props, action) {
   each(props.childPages, function(c) {
     c.selected = c.key === action.payload.key;
   });
   return props;
 });
-
-function selectTab(path, key) {
-  return {
-    type: 'SELECT_TAB',
-    payload: {
-      path: path,
-      key: key
-    }
-  }
-}
 
 Page.prototype.beyondTabBar = function() {
   return false;

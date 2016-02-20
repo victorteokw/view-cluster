@@ -12,34 +12,18 @@ import isEqual from 'lodash/isEqual';
 
 import addPageAction from '../../addPageAction';
 
-addPageAction('PUSH_STACK', function(props, action) {
+import {PUSH_STACK, POP_STACK} from './action/types';
+import {pushStack, popStack} from './action/creators';
+
+addPageAction(PUSH_STACK, function(props, action) {
   props.childPages.push(action.payload.page);
   return props;
 });
 
-function pushStack(path, page) {
-  return {
-    type: 'PUSH_STACK',
-    payload: {
-      path: path,
-      page: page
-    }
-  }
-}
-
-addPageAction('POP_STACK', function(props, action) {
+addPageAction(POP_STACK, function(props, action) {
   props.childPages.pop();
   return props;
 });
-
-function popStack(path) {
-  return {
-    type: 'POP_STACK',
-    payload: {
-      path: path
-    }
-  }
-}
 
 Page.prototype.navigationItem = function() {
   return {};
