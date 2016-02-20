@@ -1,5 +1,5 @@
-import {SET_PAGE_PROPS, REPLACE_PAGE_PROPS} from '../action/types';
-import {setPageProps, replacePageProps} from '../action/creators';
+import {SET_PAGE_PROPS, REPLACE_PAGE_PROPS} from './action/types';
+import {setPageProps, replacePageProps} from './action/creators';
 
 import map from 'lodash/map';
 import find from 'lodash/find';

@@ -1,10 +1,10 @@
 import React from 'react';
-import * as defaultPages from './pages';
+import * as builtinPages from './builtinPages';
 
-import merge from 'lodash/merge';
+import assign from 'lodash/assign';
 
 export default function renderRootPage(state, pages, dispatch, children = null) {
-  pages = merge({}, pages, defaultPages);
+  pages = assign({}, pages, builtinPages);
   let Page = pages[state.page];
   let props = state.props;
   return <Page path={[state.key]} {...props} pages={pages} dispatch={dispatch} root={true}>

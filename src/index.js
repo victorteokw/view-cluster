@@ -1,5 +1,5 @@
-import createRootPageReducer from './reducers/createRootPageReducer';
-import renderRootPage from './components/renderRootPage';
+import createRootPageReducer from './createRootPageReducer';
+import renderRootPage from './renderRootPage';
 
 import Page from './components/Page';
 
