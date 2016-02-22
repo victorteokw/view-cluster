@@ -24,7 +24,10 @@ export default class ModalView extends React.Component {
 
   render() {
     return <div className={classNames('modal', this.state)}>
-      {this.props.children}
+      <div className="modal-shadow"></div>
+      <div className="modal-page-container">
+        {this.props.children}
+      </div>
     </div>
   }
 
