@@ -11,12 +11,21 @@ import each from 'lodash/each';
 
 import addPageAction from '../../addPageAction';
 
-import {SELECT_TAB} from './action/types';
-import {selectTab} from './action/creators';
+import {SELECT_TAB, PUSH_SELECTED_STACK} from './action/types';
+import {selectTab, pushSelectedStack} from './action/creators';
 
 addPageAction(SELECT_TAB, function(props, action) {
   each(props.childPages, function(c) {
     c.selected = c.key === action.payload.key;
+  });
+  return props;
+});
+
+addPageAction(PUSH_SELECTED_STACK, function(props, action) {
+  each(props.childPages, function(c) {
+    if (c.selected) {
+      c.props.childPages.push(action.payload.page);
+    }
   });
   return props;
 });

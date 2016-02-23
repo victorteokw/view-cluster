@@ -1,1 +1,2 @@
 export const SELECT_TAB = 'SELECT_TAB';
+export const PUSH_SELECTED_STACK = 'PUSH_SELECTED_STACK';
