@@ -148,7 +148,6 @@ export default class Page extends React.Component {
       this.pages[descriptor.key] = r;
       if (r) {
         r.superPage = this;
-        r.pageType = descriptor.page;
       }
      }} />
   }

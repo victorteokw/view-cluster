@@ -44,6 +44,7 @@ Page.prototype.popStack = function() {
 export default class StackPage extends Page {
 
   static propTypes = {
+    hasTabBar: React.PropTypes.bool,
     childPages: React.PropTypes.arrayOf(
       React.PropTypes.shape({
         key: React.PropTypes.string.isRequired,
@@ -65,7 +66,7 @@ export default class StackPage extends Page {
       <ReactTransitionGroup component="div" className="stack">
         {
           this.props.childPages.map((i, n, a) => {
-            return <StackView hasNavBar={true} hasTabBar={this.superPage.pageType === 'TabsPage'} key={i.key} first={n === 0} last={n === a.length - 1} ref={(r) => this.containers[i.key] = r}>
+            return <StackView hasNavBar={true} hasTabBar={this.props.hasTabBar} key={i.key} first={n === 0} last={n === a.length - 1} ref={(r) => this.containers[i.key] = r}>
               {this.pageRender(i)}
             </StackView>
           })
