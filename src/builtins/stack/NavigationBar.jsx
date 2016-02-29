@@ -88,7 +88,7 @@ export default class NavigationBar extends React.Component {
 
   renderStackItem(className, item) {
     if (!item) return null;
-    return <div className={classNames('item', className)}>
+    return <div className={classNames('item', className, item.variant)}>
       {item.left ? this.renderItemPartial(item.left, 'left') : null}
       {item.title ? this.renderItemPartial(item.title, 'title') : null}
       {item.right ? this.renderItemPartial(item.right, 'right') : null}
