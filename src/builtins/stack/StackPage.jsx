@@ -142,12 +142,13 @@ export default class StackPage extends Page {
       let p = this.pages[k];
       if (p.beyondTabBar()) {
         higherOrder = true;
+      }
+      if (higherOrder) {
         this.containers[k].setState({beyondTabBar: true});
       } else {
         this.containers[k].setState({beyondTabBar: false});
       }
     });
-
   }
 
   componentWillUnmount() {
