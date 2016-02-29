@@ -6,6 +6,8 @@ export default class StackView extends React.Component {
   static propTypes = {
     first: React.PropTypes.bool,
     last: React.PropTypes.bool,
+    hasNavBar: React.PropTypes.bool,
+    hasTabBar: React.PropTypes.bool,
     children: React.PropTypes.element.isRequired
   };
 
@@ -39,7 +41,9 @@ export default class StackView extends React.Component {
       last: this.props.last,
       first: this.props.first,
       out: this.state.out,
-      'beyond-tab-bar': this.state.beyondTabBar
+      'under-nav-bar': this.props.hasNavBar,
+      'beyond-tab-bar': this.state.beyondTabBar,
+      'under-tab-bar': this.props.hasTabBar && !this.state.beyondTabBar
     });
     return <div className={className}>
       <div className="stack-item-page-container">

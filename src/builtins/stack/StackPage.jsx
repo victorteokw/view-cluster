@@ -65,7 +65,7 @@ export default class StackPage extends Page {
       <ReactTransitionGroup component="div" className="stack">
         {
           this.props.childPages.map((i, n, a) => {
-            return <StackView key={i.key} first={n === 0} last={n === a.length - 1} ref={(r) => this.containers[i.key] = r}>
+            return <StackView hasNavBar={true} hasTabBar={this.superPage.pageType === 'TabsPage'} key={i.key} first={n === 0} last={n === a.length - 1} ref={(r) => this.containers[i.key] = r}>
               {this.pageRender(i)}
             </StackView>
           })
