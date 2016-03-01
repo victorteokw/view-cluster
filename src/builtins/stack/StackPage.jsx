@@ -88,18 +88,16 @@ export default class StackPage extends Page {
     this.update();
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    super.componentWillUpdate(nextProps, nextState);
-  }
-
   componentDidUpdate(prevProps, prevState) {
     super.componentDidUpdate(prevProps, prevState);
     let currentSelectedKey = this.getSelectedPageKey();
     let previousSelectedKey = this.getSelectedPageKey(prevProps);
     if (currentSelectedKey !== previousSelectedKey) {
       this.getSelectedPage().pageWillAppear();
+      this.getSelectedPage().pageDidAppear();
       if (this.pages[previousSelectedKey]) {
         this.pages[previousSelectedKey].pageWillDisappear();
+        this.pages[previousSelectedKey].pageDidDisappear();
       }
     }
     this.update(prevProps, prevState);
@@ -159,6 +157,7 @@ export default class StackPage extends Page {
   pageWillAppear() {
     super.pageWillAppear();
     this.getSelectedPage().pageWillAppear();
+    this.updateNavigationBar();
   }
 
   pageDidAppear() {
