@@ -6,6 +6,7 @@ import isEqual from 'lodash/isEqual';
 let EMPTY = 'EMPTY';
 let LOADING = 'LOADING';
 let LOADED = 'LOADED';
+let ERROR = 'ERROR';
 
 import {setPageProps, replacePageProps} from '../action/creators';
 
@@ -66,7 +67,7 @@ export default class Page extends React.Component {
     this.state = {status: LOADED};
   }
 
-  loadPage(callback) {
+  loadPage(callback, errorCallback) {
     callback();
   }
 
@@ -87,6 +88,9 @@ export default class Page extends React.Component {
     this.setState({status: LOADING});
     this.loadPage(() => {
       this.setState({status: LOADED});
+      this.pageDidLoad();
+    }, () => {
+      this.setState({status: ERROR});
       this.pageDidLoad();
     });
   }
@@ -129,11 +133,17 @@ export default class Page extends React.Component {
     return null;
   }
 
+  renderError() {
+    return null;
+  }
+
   render() {
     if (this.state.status === LOADED) {
       return this.renderPage();
     } else if (this.state.status === LOADING) {
       return this.renderLoading();
+    } else if (this.state.status === ERROR) {
+      return this.renderError();
     } else {
       return null;
     }
