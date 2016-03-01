@@ -44,12 +44,14 @@ export default class Page extends React.Component {
   }
 
   componentDidMount() {
+    this._isMounted = true;
     if (this.props.root) {
       this.pageWillAppear();
     }
   }
 
   componentWillUnmount() {
+    this._isMounted = false;
     if (this.props.root) {
       this.pageWillDisappear();
     }
@@ -87,11 +89,15 @@ export default class Page extends React.Component {
     this.pageWillLoad();
     this.setState({status: LOADING});
     this.loadPage(() => {
-      this.setState({status: LOADED});
-      this.pageDidLoad();
+      if (this._isMounted) {
+        this.setState({status: LOADED});
+        this.pageDidLoad();
+      }
     }, () => {
-      this.setState({status: ERROR});
-      this.pageDidLoad();
+      if (this._isMounted) {
+        this.setState({status: ERROR});
+        this.pageDidLoad();
+      }
     });
   }
 
