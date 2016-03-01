@@ -67,6 +67,7 @@ export default class NavigationBar extends React.Component {
     } else {
       this.animate = false;
       this.topStackItem = this.dominantStackItem;
+      this.bottomStackItem = undefined;
     }
   }
 
