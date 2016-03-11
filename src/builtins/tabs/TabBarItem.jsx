@@ -9,6 +9,10 @@ export default class TabBarItem extends React.Component {
     selected: React.PropTypes.bool.isRequired,
     icon: React.PropTypes.string.isRequired,
     selectedIcon: React.PropTypes.string.isRequired,
+    badge: React.PropTypes.oneOfType([
+      React.PropTypes.string,
+      React.PropTypes.number
+    ]),
     callback: React.PropTypes.func
   };
 
@@ -21,6 +25,7 @@ export default class TabBarItem extends React.Component {
     return <TextButton component="div" className={itemClassName} touchUpInside={this.props.callback}>
       <img className="icon" src={this.props.selected ? this.props.selectedIcon : this.props.icon} />
       <div className="title">{this.props.title}</div>
+      {this.props.badge ? <div className="badge">{this.props.badge}</div> : null}
     </TextButton>
   }
 }

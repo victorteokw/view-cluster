@@ -62,6 +62,10 @@ export default class TabsPage extends Page {
         selected: React.PropTypes.bool.isRequired,
         icon: React.PropTypes.string.isRequired,
         selectedIcon: React.PropTypes.string.isRequired,
+        badge: React.PropTypes.oneOfType([
+          React.PropTypes.string,
+          React.PropTypes.number
+        ]),
         page: React.PropTypes.string.isRequired,
         props: React.PropTypes.object
       })
