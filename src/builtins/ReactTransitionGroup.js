@@ -97,7 +97,7 @@ var ReactTransitionGroup = React.createClass({
 
     var component = this.lefs[key];
 
-    if (component.componentWillAppear) {
+    if (component && component.componentWillAppear) {
       component.componentWillAppear(this._handleDoneAppearing.bind(this, key));
     } else {
       this._handleDoneAppearing(key);
