@@ -36,6 +36,15 @@ export default class StackView extends React.Component {
     }
   }
 
+  componentWillAppear(callback) {
+    if (this.props.first) {
+      callback();
+    } else {
+      this.setState({out: false});
+      callback();
+    }
+  }
+
   render() {
     let className = classNames("stack-view", {
       last: this.props.last,
