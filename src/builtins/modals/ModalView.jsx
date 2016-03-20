@@ -22,6 +22,11 @@ export default class ModalView extends React.Component {
     setTimeout(callback, 0.3 * 1000);
   }
 
+  componentWillAppear(callback) {
+    this.setState({shown: true});
+    callback();
+  }
+
   render() {
     return <div className={classNames('modal', this.state)}>
       <div className="modal-shadow"></div>
