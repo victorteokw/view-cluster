@@ -1,4 +1,4 @@
-import {SELECT_TAB, PUSH_SELECTED_STACK} from './types';
+import {SELECT_TAB, PUSH_SELECTED_STACK, POP_SELECTED_STACK} from './types';
 
 export function selectTab(path, key) {
   return {
@@ -16,6 +16,15 @@ export function pushSelectedStack(path, page) {
     payload: {
       path: path,
       page: page
+    }
+  }
+}
+
+export function popSelectedStack(path) {
+  return {
+    type: POP_SELECTED_STACK,
+    payload: {
+      path: path
     }
   }
 }
