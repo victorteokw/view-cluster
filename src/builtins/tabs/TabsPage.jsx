@@ -36,6 +36,7 @@ addPageAction(POP_SELECTED_STACK, function(props, action) {
       c.props.childPages.pop();
     }
   });
+  return props;
 });
 
 Page.prototype.beyondTabBar = function() {
