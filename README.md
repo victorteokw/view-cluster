@@ -1,7 +1,12 @@
-# view-cluster
+# DEPRECATED view-cluster
+
 [![build status](https://travis-ci.org/cheunghy/view-cluster.svg)](https://travis-ci.org/cheunghy/view-cluster)
 
 [![current version](https://badge.fury.io/js/view-cluster.svg)](https://www.npmjs.com/package/view-cluster)
+
+This project is deprecated and will not be maintained anymore.
+
+# Original Goal
 
 Aim to be the best solution for iOS style app in browser.
 
@@ -43,5 +48,5 @@ npm install view-cluster
 
 view-cluster works with
 + node.js 0.11 or above
-+ react.js 0.14
++ react.js 0.14 or 15
 + redux 3
