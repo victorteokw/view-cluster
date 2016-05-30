@@ -6,7 +6,7 @@
 
 This project is deprecated and will not be maintained anymore.
 
-# Original Goal
+## Original Goal
 
 Aim to be the best solution for iOS style app in browser.
 
