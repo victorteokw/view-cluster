@@ -1,3 +1,0 @@
-export const PRESENT_MODAL = 'PRESENT_MODAL';
-export const DISMISS_MODAL = 'DISMISS_MODAL';
-

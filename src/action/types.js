@@ -1,2 +1,0 @@
-export const SET_PAGE_PROPS = 'SET_PAGE_PROPS';
-export const REPLACE_PAGE_PROPS = 'REPLACE_PAGE_PROPS';
