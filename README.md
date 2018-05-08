@@ -3,6 +3,12 @@
 
 [![current version](https://badge.fury.io/js/view-cluster.svg)](https://www.npmjs.com/package/view-cluster)
 
+## Notice
+
+This project is being activate again, with love for my colleagues and the world.
+
+## What's view-cluster?
+
 Aim to be the best solution for iOS style app in browser.
 
 It has supports for tab bar, navigation bar, and modals.
